@@ -1,6 +1,6 @@
 import Debug from "debug"
 import type { IStorage } from "../storage"
-import type { CachedItem, ICachingOptions } from "./cache-container-types"
+import type { CachedItem, CachingOptions } from "./cache-container-types"
 
 const debug = Debug("node-ts-cache")
 
@@ -24,7 +24,7 @@ export class CacheContainer {
     public async setItem(
         key: string,
         content: any,
-        options: Partial<ICachingOptions>
+        options: Partial<CachingOptions>
     ): Promise<void> {
         const finalOptions = {
             ttl: DEFAULT_TTL_SECONDS,

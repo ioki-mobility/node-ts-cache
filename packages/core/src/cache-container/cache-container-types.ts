@@ -7,7 +7,7 @@ export type CachedItem<T = any> = {
     }
 }
 
-export interface ICachingOptions {
+export type CachingOptions = {
     ttl: number
     isLazy: boolean
     isCachedForever: boolean
@@ -16,4 +16,4 @@ export interface ICachingOptions {
         methodName: string
         args: any[]
     }) => string
-}
+};
