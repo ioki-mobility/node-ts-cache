@@ -1,5 +1,5 @@
 import fs from "fs"
-import type { ICacheItem, IStorage } from "node-ts-cache"
+import type { CachedItem, IStorage } from "node-ts-cache"
 
 export class NodeFsStorage implements IStorage {
     constructor(public jsonFilePath: string) {
@@ -12,7 +12,7 @@ export class NodeFsStorage implements IStorage {
         }
     }
 
-    public async getItem(key: string): Promise<ICacheItem | undefined> {
+    public async getItem(key: string): Promise<CachedItem | undefined> {
         return (await this.getCacheObject())[key]
     }
 

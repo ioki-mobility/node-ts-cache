@@ -1,5 +1,5 @@
 import type { Client } from "@elastic/elasticsearch"
-import type { ICacheItem, IStorage } from "node-ts-cache"
+import type { CachedItem, IStorage } from "node-ts-cache"
 
 export class ElasticSearchStorage implements IStorage {
     constructor(
@@ -18,7 +18,7 @@ export class ElasticSearchStorage implements IStorage {
         }
     }
 
-    async getItem(key: string): Promise<ICacheItem | undefined> {
+    async getItem(key: string): Promise<CachedItem | undefined> {
         let response
 
         try {
@@ -42,7 +42,7 @@ export class ElasticSearchStorage implements IStorage {
         return response.body._source
     }
 
-    async setItem(key: string, content: ICacheItem | undefined): Promise<void> {
+    async setItem(key: string, content: CachedItem | undefined): Promise<void> {
         if (content === undefined) {
             try {
                 await this.elasticsearchInstance.delete({

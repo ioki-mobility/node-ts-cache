@@ -1,8 +1,9 @@
-export interface ICacheItem {
-    content: any
+export type CachedItem<T = any> = {
+    content: T
     meta: {
         createdAt: number
         ttl: number
+        isLazy: boolean
     }
 }
 

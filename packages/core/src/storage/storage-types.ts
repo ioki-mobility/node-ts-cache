@@ -1,9 +1,9 @@
-import type { ICacheItem } from "../cache-container"
+import type { CachedItem } from "../cache-container"
 
 export interface IStorage {
-    getItem(key: string): Promise<ICacheItem | undefined>
+    getItem(key: string): Promise<CachedItem | undefined>
 
-    setItem(key: string, content: ICacheItem | undefined): Promise<void>
+    setItem(key: string, content: CachedItem | undefined): Promise<void>
 
     clear(): Promise<void>
 }

@@ -1,14 +1,14 @@
 import type { Redis } from "ioredis"
-import type { ICacheItem, IStorage } from "node-ts-cache"
+import type { CachedItem, IStorage } from "node-ts-cache"
 
 export class IoRedisStorage implements IStorage {
-    constructor(private ioRedisInstance: Redis) {}
+    constructor(private ioRedisInstance: Redis) { }
 
     async clear(): Promise<void> {
         await this.ioRedisInstance.flushdb()
     }
 
-    async getItem(key: string): Promise<ICacheItem | undefined> {
+    async getItem(key: string): Promise<CachedItem | undefined> {
         const response = await this.ioRedisInstance.get(key)
 
         if (response === undefined || response === null || response === "") {
@@ -18,13 +18,16 @@ export class IoRedisStorage implements IStorage {
         return JSON.parse(response)
     }
 
-    async setItem(key: string, content: ICacheItem | undefined): Promise<void> {
+    async setItem(key: string, content: CachedItem | undefined): Promise<void> {
         if (content === undefined) {
             await this.ioRedisInstance.del(key)
-
             return
         }
 
-        await this.ioRedisInstance.set(key, JSON.stringify(content))
+        if (content.meta.isLazy) {
+            await this.ioRedisInstance.set(key, JSON.stringify(content))
+            return;
+        }
+        await this.ioRedisInstance.set(key, JSON.stringify(content), 'PX', content.meta.ttl)
     }
 }
