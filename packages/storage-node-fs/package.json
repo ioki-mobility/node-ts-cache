@@ -35,5 +35,8 @@
     "homepage": "https://github.com/havsar/node-ts-cache#readme",
     "peerDependencies": {
         "node-ts-cache": "*"
+    },
+    "dependencies": {
+        "superjson": "^1.10.0"
     }
 }

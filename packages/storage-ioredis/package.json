@@ -34,11 +34,14 @@
     },
     "homepage": "https://github.com/havsar/node-ts-cache#readme",
     "devDependencies": {
-        "ioredis-mock": "^8",
-        "ioredis": "^5.2.3"
+        "ioredis": "^5.2.3",
+        "ioredis-mock": "^8"
     },
     "peerDependencies": {
         "ioredis": "^5",
         "node-ts-cache": "*"
+    },
+    "dependencies": {
+        "superjson": "^1.10.0"
     }
 }

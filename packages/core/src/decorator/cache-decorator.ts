@@ -3,10 +3,10 @@ import type { CacheContainer, CachingOptions } from "../cache-container"
 
 const debug = Debug("node-ts-cache")
 
-const jsonCalculateKey = (data: {
+const jsonCalculateKey = <Arguments>(data: {
     className: string
     methodName: string
-    args: any[]
+    args: Arguments[]
 }) => {
     return `${data.className}:${<string>data.methodName}:${JSON.stringify(
         data.args

@@ -1,5 +1,6 @@
 import fs from "fs"
 import type { CachedItem, IStorage } from "node-ts-cache"
+import superjson from "superjson"
 
 export class NodeFsStorage implements IStorage {
     constructor(public jsonFilePath: string) {
@@ -29,15 +30,15 @@ export class NodeFsStorage implements IStorage {
     }
 
     private createEmptyCache(): void {
-        fs.writeFileSync(this.jsonFilePath, JSON.stringify({}))
+        fs.writeFileSync(this.jsonFilePath, superjson.stringify({}))
     }
 
     private async setCache(newCache: any): Promise<void> {
-        await fs.promises.writeFile(this.jsonFilePath, JSON.stringify(newCache))
+        await fs.promises.writeFile(this.jsonFilePath, superjson.stringify(newCache))
     }
 
     private async getCacheObject(): Promise<any> {
-        return JSON.parse(
+        return superjson.parse(
             (await fs.promises.readFile(this.jsonFilePath)).toString()
         )
     }

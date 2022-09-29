@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import { NodeFsStorage } from "."
+import superjson from "superjson"
 
 const cacheFile = path.join(__dirname, "cache-test.json")
 
@@ -23,7 +24,7 @@ describe("NodeFsStorage", () => {
 
         const cache = fs.readFileSync(cacheFile).toString()
 
-        expect(cache).toStrictEqual("{}")
+        expect(cache).toMatchInlineSnapshot(`"{"json":{}}"`)
 
         fs.unlinkSync(cacheFile)
         done()
@@ -36,7 +37,7 @@ describe("NodeFsStorage", () => {
 
         await storage.setItem(cacheKey, content)
 
-        const cache = JSON.parse(fs.readFileSync(cacheFile).toString())
+        const cache = superjson.parse(fs.readFileSync(cacheFile).toString())
 
         expect(cache).toStrictEqual({ [cacheKey]: content })
 

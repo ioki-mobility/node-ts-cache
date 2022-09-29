@@ -1,5 +1,6 @@
 import type { Redis } from "ioredis"
 import type { CachedItem, IStorage } from "node-ts-cache"
+import superjson from "superjson"
 
 export class IoRedisStorage implements IStorage {
     constructor(private ioRedisInstance: Redis) { }
@@ -15,7 +16,7 @@ export class IoRedisStorage implements IStorage {
             return undefined
         }
 
-        return JSON.parse(response)
+        return superjson.parse(response);
     }
 
     async setItem(key: string, content: CachedItem | undefined): Promise<void> {
@@ -25,9 +26,9 @@ export class IoRedisStorage implements IStorage {
         }
 
         if (content.meta.isLazy) {
-            await this.ioRedisInstance.set(key, JSON.stringify(content))
+            await this.ioRedisInstance.set(key, superjson.stringify(content))
             return;
         }
-        await this.ioRedisInstance.set(key, JSON.stringify(content), 'PX', content.meta.ttl)
+        await this.ioRedisInstance.set(key, superjson.stringify(content), 'PX', content.meta.ttl)
     }
 }
