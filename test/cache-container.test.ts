@@ -1,5 +1,5 @@
-import { MemoryStorage } from "node-ts-cache-storage-memory"
-import { CacheContainer } from "node-ts-cache"
+import { MemoryStorage } from "../packages/storage-memory/src"
+import { CacheContainer } from "../packages/core/src"
 
 interface ITestType {
     user: {

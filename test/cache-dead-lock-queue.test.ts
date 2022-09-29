@@ -1,8 +1,8 @@
-import { Cache, CacheContainer } from "node-ts-cache"
+import { Cache, CacheContainer } from "../packages/core/src"
 import fs from "fs"
-import { NodeFsStorage } from "node-ts-cache-storage-node-fs"
-import { IoRedisStorage } from "node-ts-cache-storage-ioredis"
-import { MemoryStorage } from "node-ts-cache-storage-memory"
+import { NodeFsStorage } from "../packages/storage-node-fs/src"
+import { IoRedisStorage } from "../packages/storage-ioredis/src"
+import { MemoryStorage } from "../packages/storage-memory/src"
 import type { default as IORedis } from "ioredis"
 const IoRedisMock: typeof IORedis = require('ioredis-mock')
 

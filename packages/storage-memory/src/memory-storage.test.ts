@@ -1,5 +1,5 @@
 import { Cache, CacheContainer } from "node-ts-cache"
-import { MemoryStorage } from "node-ts-cache-storage-memory"
+import { MemoryStorage } from "."
 
 describe("MemoryStorage", () => {
     it("Should add cache item correctly", async () => {

@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { NodeFsStorage } from "node-ts-cache-storage-node-fs"
+import { NodeFsStorage } from "."
 
 const cacheFile = path.join(__dirname, "cache-test.json")
 

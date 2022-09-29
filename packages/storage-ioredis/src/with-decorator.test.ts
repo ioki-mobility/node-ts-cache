@@ -1,6 +1,6 @@
-import { IoRedisStorage } from "node-ts-cache-storage-ioredis"
 import { Cache, CacheContainer } from "node-ts-cache"
 import type { default as IORedis } from "ioredis"
+import { IoRedisStorage } from "."
 const IoRedisMock: typeof IORedis = require('ioredis-mock')
 
 function sleep(ms: number) {
