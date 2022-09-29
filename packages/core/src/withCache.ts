@@ -1,13 +1,14 @@
 import type { CacheContainer, CachingOptions } from "./cache-container";
 
 type WithCacheOptions<Parameters> = Partial<Omit<CachingOptions, 'calculateKey'>> & {
-    name: string;
-    keyFn: (input: Parameters) => string;
+    prefix: string;
+    calculateKey?: (prefix: string, input: Parameters) => string;
 }
+
 /**
- * wrapper function factory for withCache
+ * wrapped function factory
  * @param container - cache container to create the fn for
- * @returns a wrapper function
+ * @returns a wrapped function
  */
 export const withCacheFactory = (container: CacheContainer) => {
     const withCache = <
@@ -15,10 +16,10 @@ export const withCacheFactory = (container: CacheContainer) => {
         Result extends Promise<unknown>,
     >(
         operation: (...parameters: Parameters) => Result,
-        { keyFn, name, ...options }: WithCacheOptions<Parameters>,
+        { calculateKey, prefix, ...options }: WithCacheOptions<Parameters>,
     ) => {
         return async (...parameters: Parameters): Promise<Result> => {
-            const key = `${name}_${keyFn(parameters)}`;
+            const key = calculateKey ? calculateKey(prefix, parameters) : `${prefix}_${JSON.stringify(parameters)}`;
             const cachedResponse = await container.getItem<Awaited<Result>>(key);
 
             if (cachedResponse) {

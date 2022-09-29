@@ -26,7 +26,7 @@ describe("withCacheFactory", () => {
     })
 
     it("return the correct value wrapped", async () => {
-        const wrappedFn = withCacheFactory(container)(testingFunction, { keyFn: (...input) => JSON.stringify(...input), name: 'testing-function' });
+        const wrappedFn = withCacheFactory(container)(testingFunction, { prefix: 'testing-function' });
         
         const result = await wrappedFn({ a: "wrapped-hello", b: 555 })
         expect(result).toMatchInlineSnapshot(`"wrapped-hello-555"`)
@@ -38,7 +38,7 @@ describe("withCacheFactory", () => {
 
         const resultRepeat = await wrappedFn({ a: "wrapped-hello", b: 555 })
         expect(resultRepeat).toMatchInlineSnapshot(`"wrapped-hello-555"`)
-        // the funtion has not been called another time
+        // the function has not been called another time
         expect(testingFunctionSpy).toHaveBeenCalledTimes(2)
     })
 })
