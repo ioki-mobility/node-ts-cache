@@ -1,5 +1,16 @@
 # @boredland/node-ts-cache-storage-ioredis
 
+## 6.0.0
+
+### Minor Changes
+
+- 0c69a4d: add hook after expiry of lazy items
+
+### Patch Changes
+
+- Updated dependencies [0c69a4d]
+  - @boredland/node-ts-cache@5.1.0
+
 ## 5.0.1
 
 ### Patch Changes
