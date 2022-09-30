@@ -10,9 +10,15 @@ type WithCacheOptions<Parameters> = Partial<Omit<CachingOptions, 'calculateKey'>
 /**
  * wrapped function factory
  * @param container - cache container to create the fn for
- * @returns a wrapped function
+ * @returns wrapping function
  */
 export const withCacheFactory = (container: CacheContainer) => {
+    /**
+     * function wrapper
+     * @param operation - the function to be wrapped
+     * @param options - caching options
+     * @returns wrapped operation
+     */
     const withCache = <
         Parameters extends Array<unknown>,
         Result extends Promise<unknown>,
