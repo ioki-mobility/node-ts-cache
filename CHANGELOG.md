@@ -1,5 +1,12 @@
 
 
+### 0.0.1 (2022-09-30)
+
+
+### Bug Fixes
+
+* skip lib check ([87176fd](https://github.com/boredland/node-ts-cache/commit/87176fd5b7c78ec1232c2af3f0050f096aca9456))
+
 ## 0.1.0 (2022-09-30)
 
 
