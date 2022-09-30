@@ -9,7 +9,7 @@ const DEFAULT_TTL_SECONDS = 60
 export class CacheContainer {
     constructor(private storage: IStorage) { }
 
-    public async getItem<T>(key: string): Promise<CachedItem<T> | undefined> {
+    public async getItem<T>(key: string): Promise<{ content: T, meta: { expired: boolean, createdAt: number } } | undefined> {
         const item = await this.storage.getItem(key)
 
         if (!item) return;
@@ -17,7 +17,7 @@ export class CacheContainer {
         const result = {
             content: item.content,
             meta: {
-                ...item.meta,
+                createdAt: item.meta.createdAt,
                 expired: this.isItemExpired(item)
             }
         }
@@ -25,7 +25,7 @@ export class CacheContainer {
         if (result.meta.expired)
             await this.unsetKey(key);
 
-        if (result.meta.expired && !result.meta.isLazy)
+        if (result.meta.expired && !item.meta.isLazy)
             return undefined;
 
         return result;

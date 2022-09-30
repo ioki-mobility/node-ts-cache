@@ -5,6 +5,8 @@ type WithCacheOptions<Parameters> = Partial<Omit<CachingOptions, 'calculateKey'>
     prefix?: string;
     /** an optional function to calculate a key based on the parameters of the wrapped function */
     calculateKey?: (input: Parameters) => string;
+    /** an optional function that is called when a lazy item has expired and thus got removed  */
+    afterExpired?: () => Promise<void>
 }
 
 /**
@@ -33,6 +35,9 @@ export const withCacheFactory = (container: CacheContainer) => {
             const cachedResponse = await container.getItem<Awaited<Result>>(key);
 
             if (cachedResponse) {
+                if (cachedResponse.meta.expired && options.afterExpired) {
+                    await options.afterExpired()
+                }
                 return cachedResponse.content;
             }
 
