@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/havsar/node-ts-cache.git"
+        "url": "git+https://github.com/boredland/node-ts-cache.git"
     },
     "keywords": [
         "node",
@@ -30,9 +30,9 @@
     "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/havsar/node-ts-cache/issues"
+        "url": "https://github.com/boredland/node-ts-cache/issues"
     },
-    "homepage": "https://github.com/havsar/node-ts-cache#readme",
+    "homepage": "https://github.com/boredland/node-ts-cache#readme",
     "peerDependencies": {
         "node-ts-cache": "*"
     },
