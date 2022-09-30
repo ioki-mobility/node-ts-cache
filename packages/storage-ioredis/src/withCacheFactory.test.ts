@@ -51,6 +51,6 @@ describe("withCacheFactory", () => {
     const result = await wrappedFn({ a: "wrapped-hello", b: 555 });
     expect(result).toMatchInlineSnapshot(`"wrapped-hello-555"`);
     const data = await container.getItem("testingFunction:great:test");
-    expect(data).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+    expect(data?.content).toMatchInlineSnapshot(`"wrapped-hello-555"`);
   });
 });

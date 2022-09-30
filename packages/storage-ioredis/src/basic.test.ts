@@ -53,20 +53,20 @@ describe("01-basic", () => {
 
         const data = await strategy.getItem("settings")
 
-        expect(data).toStrictEqual(raw)
+        expect(data?.content).toStrictEqual(raw)
     })
 
-    it("Should return undefined if set item is expired", async () => {
+    it("Should return undefined if set item is expired and not lazy", async () => {
         const raw = {
             username: "max123"
         }
 
-        await strategy.setItem("user", raw, { ttl: 0.1, isLazy: true })
+        await strategy.setItem("user", raw, { ttl: 0.1, isLazy: false })
 
         await sleep(200)
 
         const data = await strategy.getItem("user")
 
-        expect(data).toStrictEqual(undefined)
+        expect(data?.content).toStrictEqual(undefined)
     })
 })

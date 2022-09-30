@@ -72,7 +72,7 @@ export function Cache(
                     if (entry) {
                         debug(`Cache HIT ${cacheKey}`)
 
-                        return entry
+                        return entry.content
                     }
 
                     debug(`Cache MISS ${cacheKey}`)

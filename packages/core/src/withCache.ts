@@ -33,7 +33,7 @@ export const withCacheFactory = (container: CacheContainer) => {
             const cachedResponse = await container.getItem<Awaited<Result>>(key);
 
             if (cachedResponse) {
-                return cachedResponse;
+                return cachedResponse.content;
             }
 
             const result = await operation(...parameters);
