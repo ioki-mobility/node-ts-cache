@@ -1,5 +1,5 @@
 {
-    "name": "node-ts-cache",
+    "name": "@boredland/node-ts-cache",
     "description": "Simple and extensible caching module supporting decorators",
     "version": "4.4.0",
     "main": "dist/index.js",
@@ -8,11 +8,12 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig-build.json"
+        "build": "tsc -p tsconfig-build.json",
+        "prepublishOnly": "cp ../../README.md ."
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/havsar/node-ts-cache.git"
+        "url": "git+https://github.com/boredland/node-ts-cache.git"
     },
     "keywords": [
         "node",
@@ -33,11 +34,11 @@
     "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/havsar/node-ts-cache/issues"
+        "url": "https://github.com/boredland/node-ts-cache/issues"
     },
-    "homepage": "https://github.com/havsar/node-ts-cache#readme",
+    "homepage": "https://github.com/boredland/node-ts-cache#readme",
     "dependencies": {
-        "debug": "^4.3.4"
+        "debug": "4.3.4"
     },
     "devDependencies": {
         "@types/debug": "^4.1.7"

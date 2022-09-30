@@ -21,7 +21,8 @@
         "allowJs": false,
         "rootDirs": ["packages/**"],
         "declaration": true,
-        "importsNotUsedAsValues": "error"
+        "importsNotUsedAsValues": "error",
+        "skipLibCheck": true
     },
     "exclude": ["node_modules"],
     "compileOnSave": false

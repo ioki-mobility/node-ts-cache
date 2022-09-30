@@ -1,13 +1,15 @@
-In-Memory storage module for [node-ts-cache](https://www.npmjs.com/package/node-ts-cache).
+# node-ts-cache-storage-memory
+
+In-Memory storage module for [node-ts-cache](https://www.npmjs.com/package/boredland/node-ts-cache).
 
 ```bash
-npm i node-ts-cache
-npm i node-ts-cache-storage-memory
+yarn add @boredland/node-ts-cache
+yarn add @boredland/node-ts-cache-storage-memory
 ```
 
 ```ts
-import { Cache, CacheContainer } from "node-ts-cache"
-import { MemoryStorage } from "node-ts-cache-storage-memory"
+import { Cache, CacheContainer } from "@boredland/node-ts-cache"
+import { MemoryStorage } from "@boredland/node-ts-cache-storage-memory"
 
 const userCache = new CacheContainer(new MemoryStorage())
 

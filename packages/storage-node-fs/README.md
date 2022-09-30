@@ -1,13 +1,14 @@
-Node.js file system storage module for [node-ts-cache](https://www.npmjs.com/package/node-ts-cache).
+# node-ts-cache-storage-node-fs
+
+Node.js file system storage module for [node-ts-cache](https://www.npmjs.com/package/boredland/node-ts-cache).
 
 ```bash
-npm i node-ts-cache
-npm i node-ts-cache-storage-node-fs
+yarn add @boredland/node-ts-cache @boredland/node-ts-cache-storage-node-fs
 ```
 
 ```ts
-import { Cache, CacheContainer } from "node-ts-cache"
-import { NodeFsStorage } from "node-ts-cache-storage-node-fs"
+import { Cache, CacheContainer } from "@boredland/node-ts-cache"
+import { NodeFsStorage } from "@boredland/node-ts-cache-storage-node-fs"
 
 const userCache = new CacheContainer(new NodeFsStorage())
 

@@ -1,4 +1,4 @@
-import { Cache, CacheContainer } from "node-ts-cache"
+import { Cache, CacheContainer } from "@boredland/node-ts-cache"
 import type { default as IORedis } from "ioredis"
 import { IoRedisStorage } from "."
 const IoRedisMock: typeof IORedis = require('ioredis-mock')

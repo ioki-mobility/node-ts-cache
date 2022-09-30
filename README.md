@@ -1,4 +1,4 @@
-# node-ts-cache
+# @boredland/node-ts-cache
 
 [![CI](https://github.com/boredland/node-ts-cache/actions/workflows/ci.yml/badge.svg)](https://github.com/boredland/node-ts-cache/actions/workflows/ci.yml)
 [![The MIT License](https://img.shields.io/npm/l/node-ts-cache.svg)](http://opensource.org/licenses/MIT)
@@ -8,7 +8,7 @@ Simple and extensible caching module supporting decorators.
 ## Install
 
 ```bash
-yarn add node-ts-cache
+yarn add @boredland/node-ts-cache
 ```
 
 _Note: The underlying storage layer must be installed separately._
@@ -17,9 +17,9 @@ _Note: The underlying storage layer must be installed separately._
 
 | Storage                                                               | Install                                         |
 |-----------------------------------------------------------------------|-------------------------------------------------|
-| [memory](https://www.npmjs.com/package/node-ts-cache-storage-memory)| ```yarn add node-ts-cache-storage-memory```|
-| [node-fs](https://www.npmjs.com/package/node-ts-cache-storage-node-fs)| ```yarn add node-ts-cache-storage-node-fs```|
-| [ioredis](https://www.npmjs.com/package/node-ts-cache-storage-ioredis)| ```yarn add node-ts-cache-storage-ioredis```|
+| [memory](https://www.npmjs.com/package/boredland/node-ts-cache-storage-memory)| ```yarn add @boredland/node-ts-cache-storage-memory```|
+| [node-fs](https://www.npmjs.com/package/boredland/node-ts-cache-storage-node-fs)| ```yarn add @boredland/node-ts-cache-storage-node-fs```|
+| [ioredis](https://www.npmjs.com/package/boredland/node-ts-cache-storage-ioredis)| ```yarn add @boredland/node-ts-cache-storage-ioredis```|
 
 ## Usage
 
@@ -44,8 +44,8 @@ By default, uses all arguments to build an unique key.
 _Note: @Cache will consider the return type of the function. If the return type is a thenable, it will stay that way, otherwise not._
 
 ```ts
-import { Cache, CacheContainer } from 'node-ts-cache'
-import { MemoryStorage } from 'node-ts-cache-storage-memory'
+import { Cache, CacheContainer } from '@boredland/node-ts-cache'
+import { MemoryStorage } from '@boredland/node-ts-cache-storage-memory'
 
 const userCache = new CacheContainer(new MemoryStorage())
 
@@ -60,8 +60,8 @@ class MyService {
 ## Directly
 
 ```ts
-import { CacheContainer } from 'node-ts-cache'
-import { MemoryStorage } from 'node-ts-cache-storage-memory'
+import { CacheContainer } from '@boredland/node-ts-cache'
+import { MemoryStorage } from '@boredland/node-ts-cache-storage-memory'
 
 const myCache = new CacheContainer(new MemoryStorage())
 

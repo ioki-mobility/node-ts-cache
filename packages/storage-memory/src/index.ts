@@ -1,4 +1,4 @@
-import type { CachedItem, IStorage } from "node-ts-cache"
+import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
 
 export class MemoryStorage implements IStorage {
     private memCache: any = {}

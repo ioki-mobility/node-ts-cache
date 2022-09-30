@@ -1,5 +1,5 @@
 import fs from "fs"
-import type { CachedItem, IStorage } from "node-ts-cache"
+import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
 import superjson from "superjson"
 
 export class NodeFsStorage implements IStorage {

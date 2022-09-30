@@ -4,8 +4,8 @@ An IoRedis instance must be created and passed to the library.
 See https://github.com/luin/ioredis#connect-to-redis for available options.
 
 ```bash
-npm i node-ts-cache
-npm i node-ts-cache-storage-elasticsearch
+npm i @boredland/node-ts-cache
+npm i @boredland/node-ts-cache-storage-elasticsearch
 npm i @elastic/elasticsearch
 ```
 

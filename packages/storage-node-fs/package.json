@@ -1,5 +1,5 @@
 {
-    "name": "node-ts-cache-storage-node-fs",
+    "name": "@boredland/node-ts-cache-storage-node-fs",
     "description": "Nodejs filesystem storage module for node-ts-cache",
     "version": "4.4.0",
     "main": "dist/index.js",
@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/havsar/node-ts-cache.git"
+        "url": "git+https://github.com/boredland/node-ts-cache.git"
     },
     "keywords": [
         "node",
@@ -30,13 +30,13 @@
     "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/havsar/node-ts-cache/issues"
+        "url": "https://github.com/boredland/node-ts-cache/issues"
     },
-    "homepage": "https://github.com/havsar/node-ts-cache#readme",
+    "homepage": "https://github.com/boredland/node-ts-cache#readme",
     "peerDependencies": {
-        "node-ts-cache": "*"
+        "@boredland/node-ts-cache": "*"
     },
     "dependencies": {
-        "superjson": "^1.10.0"
+        "superjson": "1.10.0"
     }
 }

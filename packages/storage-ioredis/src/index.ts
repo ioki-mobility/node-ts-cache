@@ -1,5 +1,5 @@
 import type { Redis } from "ioredis"
-import type { CachedItem, IStorage } from "node-ts-cache"
+import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
 import superjson from "superjson"
 
 export class IoRedisStorage implements IStorage {
