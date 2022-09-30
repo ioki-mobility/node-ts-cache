@@ -17,29 +17,32 @@ _Note: The underlying storage layer must be installed separately._
 
 | Storage                                                               | Install                                         |
 |-----------------------------------------------------------------------|-------------------------------------------------|
-| [memory](https://www.npmjs.com/package/boredland/node-ts-cache-storage-memory)| ```yarn add boredland/node-ts-cache-storage-memory```|
-| [node-fs](https://www.npmjs.com/package/boredland/node-ts-cache-storage-node-fs)| ```yarn add boredland/node-ts-cache-storage-node-fs```|
-| [ioredis](https://www.npmjs.com/package/boredland/node-ts-cache-storage-ioredis)| ```yarn add boredland/node-ts-cache-storage-ioredis```|
+| [memory](https://www.npmjs.com/package/boredland/node-ts-cache-storage-memory)| ```yarn add @boredland/node-ts-cache-storage-memory```|
+| [node-fs](https://www.npmjs.com/package/boredland/node-ts-cache-storage-node-fs)| ```yarn add @boredland/node-ts-cache-storage-node-fs```|
+| [ioredis](https://www.npmjs.com/package/boredland/node-ts-cache-storage-ioredis)| ```yarn add @boredland/node-ts-cache-storage-ioredis```|
 
 ## Usage
 
-## With decorator
+### withCacheFactory
 
-Caches function response using the given options.
-Works with the above listed storages.
-By default, uses all arguments to build an unique key.
+Function wrapper factory for arbitrary functions. The cache key is caculated based on the parameters passed to the function.
 
-`@Cache(container, options)`
+```ts
+import { withCacheFactory, CacheContainer } from '@boredland/node-ts-cache'
+import { MemoryStorage } from '@boredland/node-ts-cache-storage-memory'
 
-- `options`:
-  - `ttl`: _(Default: 60)_ Number of seconds to expire the cachte item
-  - `isLazy`: _(Default: true)_ If true, expired cache entries will be deleted on touch. If false, entries will be deleted after the given _ttl_.
-  - `isCachedForever`: _(Default: false)_ If true, cache entry has no expiration.
-  - `calculateKey(data => string)`: _(Default: JSON.stringify combination of className, methodName and call args)_
-    - `data`:
-    - `className`: The class name for the method being decorated
-    - `methodName`: The method name being decorated
-    - `args`: The arguments passed to the method when called
+const doThingsCache = new CacheContainer(new MemoryStorage())
+
+const someFn = (input: { a: string, b: number })
+
+const wrappedFn = withCacheFactory(doThingsCache)(someFn);
+
+const result = someFn({ a: "lala", b: 123 })
+```
+
+### With decorator
+
+Caches function response using the given options. By default, uses all arguments to build an unique key.
 
 _Note: @Cache will consider the return type of the function. If the return type is a thenable, it will stay that way, otherwise not._
 
@@ -57,7 +60,7 @@ class MyService {
 }
 ```
 
-## Directly
+### Direct usage
 
 ```ts
 import { CacheContainer } from '@boredland/node-ts-cache'

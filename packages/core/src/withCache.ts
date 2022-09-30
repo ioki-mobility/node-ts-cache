@@ -1,25 +1,35 @@
 import type { CacheContainer, CachingOptions } from "./cache-container";
 
 type WithCacheOptions<Parameters> = Partial<Omit<CachingOptions, 'calculateKey'>> & {
-    prefix: string;
-    calculateKey?: (prefix: string, input: Parameters) => string;
+    /** an optional prefix to prepend to the key */
+    prefix?: string;
+    /** an optional function to calculate a key based on the parameters of the wrapped function */
+    calculateKey?: (input: Parameters) => string;
 }
 
 /**
  * wrapped function factory
  * @param container - cache container to create the fn for
- * @returns a wrapped function
+ * @returns wrapping function
  */
 export const withCacheFactory = (container: CacheContainer) => {
+    /**
+     * function wrapper
+     * @param operation - the function to be wrapped
+     * @param options - caching options
+     * @returns wrapped operation
+     */
     const withCache = <
         Parameters extends Array<unknown>,
         Result extends Promise<unknown>,
     >(
         operation: (...parameters: Parameters) => Result,
-        { calculateKey, prefix, ...options }: WithCacheOptions<Parameters>,
+        options: WithCacheOptions<Parameters> = {},
     ) => {
         return async (...parameters: Parameters): Promise<Result> => {
-            const key = calculateKey ? calculateKey(prefix, parameters) : `${prefix}_${JSON.stringify(parameters)}`;
+            let { prefix, calculateKey, ...rest } = options;
+            prefix = prefix ?? 'default'
+            const key = `${operation.name}:${prefix}:${calculateKey ? calculateKey(parameters) : JSON.stringify(parameters)}`;
             const cachedResponse = await container.getItem<Awaited<Result>>(key);
 
             if (cachedResponse) {
@@ -27,7 +37,7 @@ export const withCacheFactory = (container: CacheContainer) => {
             }
 
             const result = await operation(...parameters);
-            await container.setItem(key, result, options);
+            await container.setItem(key, result, rest);
             return result;
         };
     };
