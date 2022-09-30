@@ -9,6 +9,10 @@ const testingFunction = async ({ a, b }: { a: string; b: number }) => {
   return `${a}-${b}`;
 };
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 describe("withCacheFactory", () => {
   const ioRedis = new IoRedisMock();
   const storage = new IoRedisStorage(ioRedis);
@@ -53,4 +57,22 @@ describe("withCacheFactory", () => {
     const data = await container.getItem("testingFunction:great:test");
     expect(data?.content).toMatchInlineSnapshot(`"wrapped-hello-555"`);
   });
+
+  it("calls the afterExpired hook when a lazy item got removed", async () => {
+    const afterExpired = jest.fn()
+    const wrappedFn = withCacheFactory(container)(testingFunction, { isLazy: true, afterExpired, ttl: 1 });
+
+    const result = await wrappedFn({ a: "wrapped-hello", b: 555 });
+    expect(result).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+    expect(testingFunctionSpy).toHaveBeenCalledTimes(1);
+    expect(afterExpired).toHaveBeenCalledTimes(0);
+
+    await sleep(2000)
+
+    const resultDiff = await wrappedFn({ a: "wrapped-hello", b: 555 });
+    expect(resultDiff).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+    expect(testingFunctionSpy).toHaveBeenCalledTimes(1);
+    expect(afterExpired).toHaveBeenCalledTimes(1);
+  });
+
 });
