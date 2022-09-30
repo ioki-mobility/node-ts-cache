@@ -1,0 +1,23 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "chore: release v${version}",
+    "tag": true,
+    "push": true,
+    "requireCleanWorkingDir": true,
+    "requireBranch": "main",
+    "requireUpstream": true,
+    "requireCommits": true
+  },
+  "github": {
+    "release": true
+  },
+  "npm": false,
+  "plugins": {
+    "@release-it-plugins/workspaces": true,
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
+    }
+  }
+}

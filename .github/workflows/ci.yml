@@ -5,6 +5,14 @@ on:
         branches: [main]
     pull_request:
         branches: [main]
+    workflow_dispatch:
+        branches: [main]
+        inputs:
+            force-release:
+                default: false
+                description: "try to release even with no changes"
+                required: false
+                type: boolean
 
 jobs:
     build:
@@ -22,3 +30,10 @@ jobs:
             - run: yarn --frozen-lockfile
             - run: yarn build
             - run: yarn test --coverage
+            - run: |
+                git config user.email "github-actions[bot]@users.noreply.github.com"
+                git config user.name "github-actions[bot]"
+                npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+                yarn release
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
