@@ -42,6 +42,6 @@
         "node-ts-cache": "*"
     },
     "dependencies": {
-        "superjson": "^1.10.0"
+        "superjson": "1.10.0"
     }
 }
