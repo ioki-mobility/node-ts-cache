@@ -20,7 +20,7 @@
   "workspaces": [
     "./packages/*"
   ],
-  "version": "5.0.0",
+  "version": "0.0.1",
   "release-it": {
     "plugins": {
       "@release-it/conventional-changelog": {
@@ -29,17 +29,17 @@
       },
       "@release-it-plugins/workspaces": {
         "versionUpdates": [
-            "packages/core/package.json",
-            "packages/storage-elasticsearch/package.json",
-            "packages/storage-ioredis/package.json",
-            "packages/storage-memory/package.json",
-            "packages/storage-node-fs/package.json"
+          "packages/core/package.json",
+          "packages/storage-elasticsearch/package.json",
+          "packages/storage-ioredis/package.json",
+          "packages/storage-memory/package.json",
+          "packages/storage-node-fs/package.json"
         ],
         "dependencyUpdates": [
-            "packages/storage-elasticsearch/package.json",
-            "packages/storage-ioredis/package.json",
-            "packages/storage-memory/package.json",
-            "packages/storage-node-fs/package.json"
+          "packages/storage-elasticsearch/package.json",
+          "packages/storage-ioredis/package.json",
+          "packages/storage-memory/package.json",
+          "packages/storage-node-fs/package.json"
         ]
       }
     },
