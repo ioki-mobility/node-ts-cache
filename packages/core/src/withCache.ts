@@ -1,8 +1,10 @@
 import type { CacheContainer, CachingOptions } from "./cache-container";
 
 type WithCacheOptions<Parameters> = Partial<Omit<CachingOptions, 'calculateKey'>> & {
+    /** an optional prefix to prepend to the key */
     prefix?: string;
-    calculateKey?: (prefix: string, input: Parameters) => string;
+    /** an optional function to calculate a key based on the parameters of the wrapped function */
+    calculateKey?: (input: Parameters) => string;
 }
 
 /**
@@ -16,11 +18,12 @@ export const withCacheFactory = (container: CacheContainer) => {
         Result extends Promise<unknown>,
     >(
         operation: (...parameters: Parameters) => Result,
-        { calculateKey, prefix, ...options }: WithCacheOptions<Parameters>,
+        options: WithCacheOptions<Parameters> = {},
     ) => {
         return async (...parameters: Parameters): Promise<Result> => {
+            let { prefix, calculateKey, ...rest } = options;
             prefix = prefix ?? 'default'
-            const key = `${operation.name}:${calculateKey ? calculateKey(prefix, parameters) : `${prefix}:${JSON.stringify(parameters)}`}`;
+            const key = `${operation.name}:${prefix}:${calculateKey ? calculateKey(parameters) : JSON.stringify(parameters)}`;
             const cachedResponse = await container.getItem<Awaited<Result>>(key);
 
             if (cachedResponse) {
@@ -28,7 +31,7 @@ export const withCacheFactory = (container: CacheContainer) => {
             }
 
             const result = await operation(...parameters);
-            await container.setItem(key, result, options);
+            await container.setItem(key, result, rest);
             return result;
         };
     };
