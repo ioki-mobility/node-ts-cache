@@ -1,6 +1,6 @@
 # node-ts-cache-storage-node-fs
 
-Node.js file system storage module for [node-ts-cache](https://www.npmjs.com/package/boredland/node-ts-cache).
+Node.js file system storage module for [node-ts-cache](https://www.npmjs.com/package/@boredland/node-ts-cache).
 
 ```bash
 yarn add @boredland/node-ts-cache @boredland/node-ts-cache-storage-node-fs
