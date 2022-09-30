@@ -17,13 +17,30 @@ _Note: The underlying storage layer must be installed separately._
 
 | Storage                                                               | Install                                         |
 |-----------------------------------------------------------------------|-------------------------------------------------|
-| [memory](https://www.npmjs.com/package/boredland/node-ts-cache-storage-memory)| ```yarn add boredland/node-ts-cache-storage-memory```|
-| [node-fs](https://www.npmjs.com/package/boredland/node-ts-cache-storage-node-fs)| ```yarn add boredland/node-ts-cache-storage-node-fs```|
-| [ioredis](https://www.npmjs.com/package/boredland/node-ts-cache-storage-ioredis)| ```yarn add boredland/node-ts-cache-storage-ioredis```|
+| [memory](https://www.npmjs.com/package/boredland/node-ts-cache-storage-memory)| ```yarn add @boredland/node-ts-cache-storage-memory```|
+| [node-fs](https://www.npmjs.com/package/boredland/node-ts-cache-storage-node-fs)| ```yarn add @boredland/node-ts-cache-storage-node-fs```|
+| [ioredis](https://www.npmjs.com/package/boredland/node-ts-cache-storage-ioredis)| ```yarn add @boredland/node-ts-cache-storage-ioredis```|
 
 ## Usage
 
-## With decorator
+### withCache wrapper
+
+Function wrapper factory for arbitrary functions. The cache key is caculated based on the parameters passed to the function.
+
+```ts
+import { withCacheFactory, CacheContainer } from '@boredland/node-ts-cache'
+import { MemoryStorage } from '@boredland/node-ts-cache-storage-memory'
+
+const doThingsCache = new CacheContainer(new MemoryStorage())
+
+const someFn = (input: { a: string, b: number })
+
+const wrappedFn = withCacheFactory(doThingsCache)(someFn);
+
+const result = someFn({ a: "lala", b: 123 })
+```
+
+### With decorator
 
 Caches function response using the given options.
 Works with the above listed storages.
@@ -57,7 +74,7 @@ class MyService {
 }
 ```
 
-## Directly
+### Directly
 
 ```ts
 import { CacheContainer } from '@boredland/node-ts-cache'
