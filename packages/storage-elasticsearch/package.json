@@ -35,7 +35,7 @@
     },
     "homepage": "https://github.com/boredland/node-ts-cache#readme",
     "devDependencies": {
-        "@elastic/elasticsearch": "^7.15.0"
+        "@elastic/elasticsearch": "^8.0.0"
     },
     "peerDependencies": {
         "@elastic/elasticsearch": "*",
