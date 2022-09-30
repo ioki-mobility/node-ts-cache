@@ -21,3 +21,6 @@ lerna-debug.log
 
 # jest
 coverage
+
+#turbo
+**/.turbo

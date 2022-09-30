@@ -1,4 +1,4 @@
-import { Cache, CacheContainer } from "node-ts-cache"
+import { Cache, CacheContainer } from "@boredland/node-ts-cache"
 import { MemoryStorage } from "."
 
 describe("MemoryStorage", () => {

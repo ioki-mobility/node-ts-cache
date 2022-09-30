@@ -1,42 +1,46 @@
 {
-    "name": "node-ts-cache-storage-node-fs",
-    "description": "Nodejs filesystem storage module for node-ts-cache",
-    "version": "4.4.0",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build": "tsc -p tsconfig-build.json"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/havsar/node-ts-cache.git"
-    },
-    "keywords": [
-        "node",
-        "nodejs",
-        "cache",
-        "typescript",
-        "ts",
-        "caching",
-        "memcache",
-        "memory-cache",
-        "redis-cache",
-        "redis",
-        "cache",
-        "file-cache",
-        "node-cache",
-        "ts-cache"
-    ],
-    "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/havsar/node-ts-cache/issues"
-    },
-    "homepage": "https://github.com/havsar/node-ts-cache#readme",
-    "peerDependencies": {
-        "node-ts-cache": "*"
-    },
-    "dependencies": {
-        "superjson": "^1.10.0"
-    }
+  "name": "@boredland/node-ts-cache-storage-node-fs",
+  "description": "Nodejs filesystem storage module for node-ts-cache",
+  "version": "5.0.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig-build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boredland/node-ts-cache.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "cache",
+    "typescript",
+    "ts",
+    "caching",
+    "memcache",
+    "memory-cache",
+    "redis-cache",
+    "redis",
+    "cache",
+    "file-cache",
+    "node-cache",
+    "ts-cache"
+  ],
+  "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boredland/node-ts-cache/issues"
+  },
+  "homepage": "https://github.com/boredland/node-ts-cache#readme",
+  "peerDependencies": {
+    "@boredland/node-ts-cache": "^5.0.0"
+  },
+  "devDependencies": {
+    "@boredland/node-ts-cache": "^5.0.0"
+  },
+  "dependencies": {
+    "superjson": "1.10.0"
+  }
 }

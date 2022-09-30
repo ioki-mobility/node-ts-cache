@@ -1,47 +1,49 @@
 {
-    "name": "node-ts-cache-storage-ioredis",
-    "description": "Redis storage module for node-ts-cache",
-    "version": "4.4.0",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build": "tsc -p tsconfig-build.json"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/havsar/node-ts-cache.git"
-    },
-    "keywords": [
-        "node",
-        "nodejs",
-        "cache",
-        "typescript",
-        "ts",
-        "caching",
-        "memcache",
-        "memory-cache",
-        "redis-cache",
-        "redis",
-        "cache",
-        "file-cache",
-        "node-cache",
-        "ts-cache"
-    ],
-    "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/havsar/node-ts-cache/issues"
-    },
-    "homepage": "https://github.com/havsar/node-ts-cache#readme",
-    "devDependencies": {
-        "ioredis": "^5.2.3",
-        "ioredis-mock": "^8"
-    },
-    "peerDependencies": {
-        "ioredis": "^5",
-        "node-ts-cache": "*"
-    },
-    "dependencies": {
-        "superjson": "^1.10.0"
-    }
+  "name": "@boredland/node-ts-cache-storage-ioredis",
+  "description": "Redis storage module for node-ts-cache",
+  "version": "5.0.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig-build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boredland/node-ts-cache.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "cache",
+    "typescript",
+    "ts",
+    "caching",
+    "memcache",
+    "memory-cache",
+    "redis-cache",
+    "redis",
+    "cache",
+    "file-cache",
+    "node-cache",
+    "ts-cache"
+  ],
+  "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boredland/node-ts-cache/issues"
+  },
+  "homepage": "https://github.com/boredland/node-ts-cache#readme",
+  "devDependencies": {
+    "ioredis": "^5.2.3",
+    "ioredis-mock": "^8",
+    "@boredland/node-ts-cache": "^5.0.0"
+  },
+  "peerDependencies": {
+    "ioredis": "^5",
+    "@boredland/node-ts-cache": "^5.0.0"
+  },
+  "dependencies": {
+    "superjson": "1.10.0"
+  }
 }

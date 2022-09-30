@@ -6,10 +6,10 @@ const config: Config.InitialOptions = {
     testEnvironment: "node",
     ci: true,
     moduleNameMapper: {
-        'node-ts-cache': '<rootDir>/packages/core/src'
+        '@boredland/node-ts-cache': '<rootDir>/packages/core/src'
     },
     collectCoverageFrom: [
-        "<rootDir>/packages/*/src/**/*.ts"
+        "**/*.ts"
     ]
 }
 

@@ -1,18 +1,17 @@
+# node-ts-cache-storage-ioredis
+
 IoRedis storage module for [node-ts-cache](https://www.npmjs.com/package/node-ts-cache).
 
 An IoRedis instance must be created and passed to the library.
 See https://github.com/luin/ioredis#connect-to-redis for available options.
 
 ```bash
-npm i node-ts-cache
-npm i node-ts-cache-storage-ioredis
-npm i ioredis
-npm i -D @types/ioredis
+yarn add boredland/node-ts-cache boredland/node-ts-cache-storage-ioredis ioredis
 ```
 
 ```ts
-import { Cache, CacheContainer } from "node-ts-cache"
-import { IoRedisStorage } from "node-ts-cache-storage-ioredis"
+import { Cache, CacheContainer } from "@boredland/node-ts-cache"
+import { IoRedisStorage } from "@boredland/node-ts-cache-storage-ioredis"
 import IoRedis from "ioredis"
 
 const ioRedisInstance = new IoRedis({

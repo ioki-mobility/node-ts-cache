@@ -1,5 +1,5 @@
-import { MemoryStorage } from "../packages/storage-memory/src"
-import { CacheContainer } from "../packages/core/src"
+import { MemoryStorage } from "../../storage-memory/src"
+import { CacheContainer } from "../src"
 
 interface ITestType {
     user: {
