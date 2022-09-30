@@ -18,9 +18,9 @@ _Note: The underlying storage layer must be installed separately._
 
 | Storage                                                               | Install                                         |
 |-----------------------------------------------------------------------|-------------------------------------------------|
-| [memory](https://www.npmjs.com/package/boredland/node-ts-cache-storage-memory)| ```yarn add @boredland/node-ts-cache-storage-memory```|
-| [node-fs](https://www.npmjs.com/package/boredland/node-ts-cache-storage-node-fs)| ```yarn add @boredland/node-ts-cache-storage-node-fs```|
-| [ioredis](https://www.npmjs.com/package/boredland/node-ts-cache-storage-ioredis)| ```yarn add @boredland/node-ts-cache-storage-ioredis```|
+| [memory](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-memory)| ```yarn add @boredland/node-ts-cache-storage-memory```|
+| [node-fs](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-node-fs)| ```yarn add @boredland/node-ts-cache-storage-node-fs```|
+| [ioredis](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-ioredis)| ```yarn add @boredland/node-ts-cache-storage-ioredis```|
 
 ## Usage
 
@@ -71,7 +71,7 @@ const myCache = new CacheContainer(new MemoryStorage())
 
 class MyService {
     public async getUsers(): Promise<string[]> {
-        const cachedUsers = await myCache.getItem<string[]>("users")
+        const { content: cachedUsers } = await myCache.getItem<string[]>("users")
 
         if (cachedUsers) {
             return cachedUsers

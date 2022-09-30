@@ -1,6 +1,6 @@
 # node-ts-cache-storage-memory
 
-In-Memory storage module for [node-ts-cache](https://www.npmjs.com/package/boredland/node-ts-cache).
+In-Memory storage module for [node-ts-cache](https://www.npmjs.com/package/@boredland/node-ts-cache).
 
 ```bash
 yarn add @boredland/node-ts-cache
