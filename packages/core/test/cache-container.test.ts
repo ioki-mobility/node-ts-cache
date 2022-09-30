@@ -18,15 +18,27 @@ describe("CacheContainer", () => {
         await cache.setItem("test", data, { ttl: 10 })
         const entry = await cache.getItem<ITestType>("test")
 
-        expect(entry).toStrictEqual(data)
+        expect(entry?.content).toStrictEqual(data)
     })
 
-    it("Should return no item if cache expires instantly with isLazy", async () => {
+    it("Should return item if cache expires instantly with isLazy", async () => {
         const cache = new CacheContainer(new MemoryStorage())
 
-        await cache.setItem("test", data, { ttl: -1 })
+        await cache.setItem("test", data, { ttl: -1, isLazy: true })
         const entry = await cache.getItem<ITestType>("test")
-        expect(entry).toStrictEqual(undefined)
+        expect(entry?.content).toStrictEqual(data)
+    })
+
+    it("Should item if cache expired with isLazy", async () => {
+        const cache = new CacheContainer(new MemoryStorage())
+
+        await cache.setItem("test", data, { ttl: 1, isLazy: true })
+        await wait(2000)
+        const entry = await cache.getItem<ITestType>("test")
+        expect(entry?.content).toStrictEqual(data)
+
+        const entryAgain = await cache.getItem<ITestType>("test")
+        expect(entryAgain?.content).toStrictEqual(undefined)
     })
 
     it("Should not find cache item after ttl with isLazy disabled", async () => {
@@ -50,7 +62,7 @@ describe("CacheContainer", () => {
         await wait(10)
 
         const entry = await cache.getItem<ITestType>("test")
-        expect(entry).toStrictEqual(data)
+        expect(entry?.content).toStrictEqual(data)
     })
 })
 

@@ -70,7 +70,7 @@ describe("02-with-decorator", () => {
 
         const usersAfter10ms = await testClassInstance.getUsers()
 
-        expect(getUsersFromBackend).toHaveBeenCalledTimes(2)
+        expect(getUsersFromBackend).toHaveBeenCalledTimes(1)
         expect(users).toStrictEqual(usersAfter10ms)
     })
 })

@@ -9,16 +9,26 @@ const DEFAULT_TTL_SECONDS = 60
 export class CacheContainer {
     constructor(private storage: IStorage) { }
 
-    public async getItem<T>(key: string): Promise<T | undefined> {
+    public async getItem<T>(key: string): Promise<CachedItem<T> | undefined> {
         const item = await this.storage.getItem(key)
 
-        if (item?.meta?.ttl && this.isItemExpired(item)) {
-            await this.unsetKey(key)
+        if (!item) return;
 
-            return undefined
+        const result = {
+            content: item.content,
+            meta: {
+                ...item.meta,
+                expired: this.isItemExpired(item)
+            }
         }
 
-        return item ? item.content : undefined
+        if (result.meta.expired)
+            await this.unsetKey(key);
+
+        if (result.meta.expired && !result.meta.isLazy)
+            return undefined;
+
+        return result;
     }
 
     public async setItem(
@@ -33,18 +43,10 @@ export class CacheContainer {
             ...options
         }
 
-        const meta: CachedItem<typeof content>["meta"] ={
+        const meta: CachedItem<typeof content>["meta"] = {
             createdAt: Date.now(),
             isLazy: finalOptions.isLazy,
             ttl: finalOptions.isCachedForever ? Infinity : finalOptions.ttl * 1000
-        }
-
-        if (!finalOptions.isCachedForever && !finalOptions.isLazy) {
-            setTimeout(() => {
-                this.unsetKey(key)
-
-                debug(`Expired key ${key} removed from cache`)
-            }, meta.ttl)
         }
 
         await this.storage.setItem(key, { meta, content })

@@ -3,13 +3,13 @@ import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
 export class MemoryStorage implements IStorage {
     private memCache: any = {}
 
-    constructor() {}
+    constructor() { }
 
     public async getItem(key: string): Promise<CachedItem | undefined> {
         return this.memCache[key]
     }
 
-    public async setItem(key: string, content: any): Promise<void> {
+    public async setItem(key: string, content: CachedItem | undefined): Promise<void> {
         this.memCache[key] = content
     }
 

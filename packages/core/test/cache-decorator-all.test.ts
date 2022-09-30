@@ -95,7 +95,7 @@ function testForCache(cache: CacheContainer) {
 
                 expect(data).toStrictEqual(users)
                 expect(
-                    await cache.getItem<string[]>("TestClass1:getUsers:[]")
+                    (await cache.getItem<string[]>("TestClass1:getUsers:[]"))?.content
                 ).toStrictEqual(data)
             })
 
@@ -106,7 +106,7 @@ function testForCache(cache: CacheContainer) {
 
                 expect(data).toStrictEqual(response)
                 expect(
-                    await cache.getItem<string[]>("TestClass1:getUsersPromise:[]")
+                    (await cache.getItem<string[]>("TestClass1:getUsersPromise:[]"))?.content
                 ).toStrictEqual(data)
             })
 
@@ -116,7 +116,7 @@ function testForCache(cache: CacheContainer) {
                 const users = await myClass.getUsers()
                 expect(data).toStrictEqual(users)
                 expect(
-                    await cache.getItem<string[]>("TestClass2:getUsers:[]")
+                    (await cache.getItem<string[]>("TestClass2:getUsers:[]"))?.content
                 ).toStrictEqual(data)
             })
 
@@ -126,7 +126,7 @@ function testForCache(cache: CacheContainer) {
                 const users = await myClass.getUsers()
 
                 expect(data).toStrictEqual(users)
-                expect(await cache.getItem<string[]>("getUsers")).toStrictEqual(
+                expect((await cache.getItem<string[]>("getUsers"))?.content).toStrictEqual(
                     data
                 )
             })
@@ -138,7 +138,7 @@ function testForCache(cache: CacheContainer) {
 
                 expect(data).toStrictEqual(response)
                 expect(
-                    await cache.getItem<string[]>("getUsersPromise")
+                   (await cache.getItem<string[]>("getUsersPromise"))?.content
                 ).toStrictEqual(data)
             })
 
@@ -148,7 +148,7 @@ function testForCache(cache: CacheContainer) {
                 await myClass.getUsersPromise().then(async (response) => {
                     expect(data).toStrictEqual(response)
                     expect(
-                        await cache.getItem<string[]>("getUsersPromise")
+                        (await cache.getItem<string[]>("getUsersPromise"))?.content
                     ).toStrictEqual(data)
                 })
             })
