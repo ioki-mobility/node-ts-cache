@@ -6,7 +6,7 @@ An IoRedis instance must be created and passed to the library.
 See https://github.com/luin/ioredis#connect-to-redis for available options.
 
 ```bash
-yarn add boredland/node-ts-cache boredland/node-ts-cache-storage-ioredis ioredis
+yarn add @boredland/node-ts-cache @boredland/node-ts-cache-storage-ioredis ioredis
 ```
 
 ```ts

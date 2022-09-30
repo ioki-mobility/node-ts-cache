@@ -1,4 +1,4 @@
-# boredland/node-ts-cache
+# @boredland/node-ts-cache
 
 [![CI](https://github.com/boredland/node-ts-cache/actions/workflows/ci.yml/badge.svg)](https://github.com/boredland/node-ts-cache/actions/workflows/ci.yml)
 [![The MIT License](https://img.shields.io/npm/l/node-ts-cache.svg)](http://opensource.org/licenses/MIT)
@@ -8,7 +8,7 @@ Simple and extensible caching module supporting decorators.
 ## Install
 
 ```bash
-yarn add boredland/node-ts-cache
+yarn add @boredland/node-ts-cache
 ```
 
 _Note: The underlying storage layer must be installed separately._

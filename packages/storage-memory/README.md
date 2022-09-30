@@ -3,8 +3,8 @@
 In-Memory storage module for [node-ts-cache](https://www.npmjs.com/package/boredland/node-ts-cache).
 
 ```bash
-yarn add boredland/node-ts-cache
-yarn add boredland/node-ts-cache-storage-memory
+yarn add @boredland/node-ts-cache
+yarn add @boredland/node-ts-cache-storage-memory
 ```
 
 ```ts
