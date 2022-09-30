@@ -28,7 +28,6 @@
     "node-cache",
     "ts-cache"
   ],
-  "author": "Himmet Avsar <avsar.himmet1@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/boredland/node-ts-cache/issues"
