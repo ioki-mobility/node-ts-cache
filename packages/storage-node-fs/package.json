@@ -1,7 +1,7 @@
 {
   "name": "@boredland/node-ts-cache-storage-node-fs",
   "description": "Nodejs filesystem storage module for node-ts-cache",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/boredland/node-ts-cache#readme",
   "peerDependencies": {
-    "@boredland/node-ts-cache": "^6.0.0"
+    "@boredland/node-ts-cache": "^6.0.1"
   },
   "devDependencies": {
-    "@boredland/node-ts-cache": "^6.0.0"
+    "@boredland/node-ts-cache": "^6.0.1"
   },
   "dependencies": {
     "superjson": "1.10.0"

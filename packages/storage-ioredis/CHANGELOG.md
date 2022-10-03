@@ -1,5 +1,13 @@
 # @boredland/node-ts-cache-storage-ioredis
 
+## 7.0.1
+
+### Patch Changes
+
+- 488787b: feat: elasticsearch storage
+- Updated dependencies [488787b]
+  - @boredland/node-ts-cache@6.0.1
+
 ## 7.0.0
 
 ### Major Changes

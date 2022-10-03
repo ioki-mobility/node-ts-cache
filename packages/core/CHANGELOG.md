@@ -1,5 +1,11 @@
 # @boredland/node-ts-cache
 
+## 6.0.1
+
+### Patch Changes
+
+- 488787b: feat: elasticsearch storage
+
 ## 6.0.0
 
 ### Major Changes

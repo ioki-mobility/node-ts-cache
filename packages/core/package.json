@@ -1,7 +1,7 @@
 {
   "name": "@boredland/node-ts-cache",
   "description": "Simple and extensible caching module supporting decorators",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
