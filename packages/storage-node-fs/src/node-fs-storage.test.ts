@@ -1,40 +1,40 @@
-import fs from "fs"
-import path from "path"
-import { NodeFsStorage } from "."
-import { storageTestFactory } from "../../core/src/storage/storageTestFactory"
-import { decoratorTestFactory } from "../../core/src/decorator/decoratorTestFactory"
+import fs from "fs";
+import path from "path";
+import { NodeFsStorage } from ".";
+import { storageTestFactory } from "../../core/src/storage/storageTestFactory";
+import { decoratorTestFactory } from "../../core/src/decorator/decoratorTestFactory";
 
 describe("node-fs-storage", () => {
-    const cacheFile = path.join(__dirname, "cache-test.json")
-    const storage = new NodeFsStorage(cacheFile)
+  const cacheFile = path.join(__dirname, "cache-test.json");
+  const storage = new NodeFsStorage(cacheFile);
 
-    afterAll(() => {
-        fs.unlinkSync(cacheFile)
-    })
+  afterAll(() => {
+    fs.unlinkSync(cacheFile);
+  });
 
-    it("Should create file on storage construction", () => {
-        const testPath = path.join(__dirname, "cache-test-construct.json")
-        const storage = new NodeFsStorage(testPath)
+  it("Should create file on storage construction", () => {
+    const testPath = path.join(__dirname, "cache-test-construct.json");
+    const storage = new NodeFsStorage(testPath);
 
-        storage.clear()
+    storage.clear();
 
-        fs.readFileSync(testPath)
-        fs.unlinkSync(testPath)
-    })
+    fs.readFileSync(testPath);
+    fs.unlinkSync(testPath);
+  });
 
-    it("Should be empty cache file on storage construction", () => {
-        const testPath = path.join(__dirname, "cache-test-construct-empty.json")
-        const storage = new NodeFsStorage(testPath)
+  it("Should be empty cache file on storage construction", () => {
+    const testPath = path.join(__dirname, "cache-test-construct-empty.json");
+    const storage = new NodeFsStorage(testPath);
 
-        storage.clear()
+    storage.clear();
 
-        const cache = fs.readFileSync(testPath).toString()
+    const cache = fs.readFileSync(testPath).toString();
 
-        expect(cache).toMatchInlineSnapshot(`"{"json":{}}"`)
+    expect(cache).toMatchInlineSnapshot(`"{"json":{}}"`);
 
-        fs.unlinkSync(testPath)
-    })
+    fs.unlinkSync(testPath);
+  });
 
-    storageTestFactory(storage)
-    decoratorTestFactory(storage)
-})
+  storageTestFactory(storage);
+  decoratorTestFactory(storage);
+});
