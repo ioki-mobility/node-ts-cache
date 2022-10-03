@@ -3,6 +3,9 @@ import type { CachedItem, Storage } from "@boredland/node-ts-cache";
 import superjson from "superjson";
 
 export class IoRedisStorage implements Storage {
+  /**
+   * @param ioRedisInstance - ioredis instance
+   */
   constructor(private ioRedisInstance: Redis) {}
 
   async clear(): Promise<void> {

@@ -3,7 +3,13 @@ import type { CachedItem, Storage } from "@boredland/node-ts-cache";
 import superjson from "superjson";
 
 export class NodeFsStorage implements Storage {
-  constructor(public jsonFilePath: string) {
+  /**
+   * @param jsonFilePath - path to save the file to
+   */
+  constructor(
+    /** path to save the file to */
+    public jsonFilePath: string
+  ) {
     let exists = false;
     fs.open(jsonFilePath, "r", function (error) {
       exists = !!error;

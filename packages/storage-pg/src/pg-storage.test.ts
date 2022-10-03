@@ -1,7 +1,7 @@
 import { PgStorage } from ".";
 import { DataType, IBackup, newDb } from "pg-mem";
-import { storageTestFactory } from "../../core/src/storage/storageTestFactory";
-import { decoratorTestFactory } from "../../core/src/decorator/decoratorTestFactory";
+import { storageTestFactory } from "../../core/src/utils/storageTestFactory";
+import { decoratorTestFactory } from "../../core/src/utils/decoratorTestFactory";
 
 describe("pg-storage", () => {
   const tableName = "abc";
