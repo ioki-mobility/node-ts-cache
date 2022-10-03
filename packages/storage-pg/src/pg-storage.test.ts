@@ -6,8 +6,10 @@ import { decoratorTestFactory } from "../../core/src/decorator/decoratorTestFact
 describe("pg-storage", () => {
     const tableName = 'abc'
     let backup: IBackup;
-    const storage = new PgStorage(tableName, async (query) => db.public.query(query).rows)
     const db = newDb();
+    const { Client: PGClient } = db.adapters.createPg();
+    const pgClient = new PGClient()
+    const storage = new PgStorage(tableName, async (query) => (await pgClient.query(query)).rows)
 
     beforeAll(async () => {
         db.public.declareTable({

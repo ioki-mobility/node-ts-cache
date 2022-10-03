@@ -8,9 +8,8 @@ export class PgStorage implements Storage {
     }
 
     async getItem(key: string): Promise<CachedItem | undefined> {
-        const queryResult = await this.rawQuery(`SELECT key, value FROM ${this.tableName} WHERE key = '${key}'`)
-        const result = queryResult;
-
+        const result = await this.rawQuery(`SELECT key, value FROM ${this.tableName} WHERE key = '${key}'`)
+                
         if (!result || result.length === 0) return undefined;
 
         return { ...result[0].value }

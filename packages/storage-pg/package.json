@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@boredland/node-ts-cache": "^5.1.0",
+    "pg": "^8.8.0",
     "pg-mem": "^2.6.3"
   }
 }
