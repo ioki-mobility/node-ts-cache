@@ -1,5 +1,11 @@
 # @boredland/node-ts-cache
 
+## 6.0.0
+
+### Major Changes
+
+- 779bdc7: feat: postgres storage
+
 ## 5.1.0
 
 ### Minor Changes
