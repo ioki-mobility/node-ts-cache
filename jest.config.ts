@@ -1,16 +1,25 @@
-import type { Config } from "@jest/types"
+import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
-    verbose: true,
-    preset: "ts-jest",
-    testEnvironment: "node",
-    ci: true,
-    moduleNameMapper: {
-        '@boredland/node-ts-cache': '<rootDir>/packages/core/src'
-    },
-    collectCoverageFrom: [
-        "**/*.ts"
-    ]
-}
+  verbose: true,
+  rootDir: process.cwd(),
+  moduleFileExtensions: ["js", "ts"],
+  coveragePathIgnorePatterns: ["jest.config.ts", ".*(TestFactory.ts)$"],
+  transform: {
+    ".*\\.(ts?)$": [
+      "@swc/jest",
+      {
+        jsc: {
+          parser: {
+            decorators: true,
+            syntax: "typescript",
+          },
+        },
+      },
+    ],
+  },
+  ci: true,
+  collectCoverageFrom: ["**/*.ts"],
+};
 
-export default config
+export default config;

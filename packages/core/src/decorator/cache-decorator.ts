@@ -1,98 +1,90 @@
-import Debug from "debug"
-import type { CacheContainer, CachingOptions } from "../cache-container"
+import Debug from "debug";
+import type { CacheContainer, CachingOptions } from "../cache-container";
 
-const debug = Debug("node-ts-cache")
+const debug = Debug("node-ts-cache");
 
 const jsonCalculateKey = <Arguments>(data: {
-    className: string
-    methodName: string
-    args: Arguments[]
+  className: string;
+  methodName: string;
+  args: Arguments[];
 }) => {
-    return `${data.className}:${<string>data.methodName}:${JSON.stringify(
-        data.args
-    )}`
-}
+  return `${data.className}:${<string>data.methodName}:${JSON.stringify(
+    data.args
+  )}`;
+};
 
 export function Cache(
-    container: CacheContainer,
-    options?: Partial<CachingOptions>
+  container: CacheContainer,
+  options?: Partial<CachingOptions>
 ): MethodDecorator {
-    return function (
-        target: Object & {
-            __node_ts_cache_method_run_queue?: {
-                [key: string]: Promise<any> | undefined
-            }
-        },
-        methodName: string | symbol,
-        descriptor: TypedPropertyDescriptor<any>
-    ) {
-        const originalMethod = descriptor.value
-        const className = target.constructor.name
+  return function (
+    target: unknown & {
+      __node_ts_cache_method_run_queue?: {
+        [key: string]: Promise<unknown> | undefined;
+      };
+    },
+    methodName: string | symbol,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    descriptor: TypedPropertyDescriptor<any>
+  ) {
+    const originalMethod = descriptor.value;
+    const className = target.constructor.name;
 
-        descriptor.value = async function (...args: unknown[]) {
-            options ??= {}
+    descriptor.value = async function (...args: unknown[]) {
+      options ??= {};
 
-            const keyOptions = {
-                args,
-                methodName: <string>methodName,
-                className
-            }
-            const cacheKey = options.calculateKey
-                ? options.calculateKey(keyOptions)
-                : jsonCalculateKey(keyOptions)
+      const keyOptions = {
+        args,
+        methodName: <string>methodName,
+        className,
+      };
+      const cacheKey = options.calculateKey
+        ? options.calculateKey(keyOptions)
+        : jsonCalculateKey(keyOptions);
 
-            const runOriginalMethod = async () => {
-                const methodCall = originalMethod.apply(this, args)
+      const runOriginalMethod = () => {
+        const methodCall = originalMethod.apply(this, args);
+        return methodCall;
+      };
 
-                const isAsync =
-                    methodCall?.constructor?.name === "AsyncFunction" ||
-                    methodCall?.constructor?.name === "Promise"
+      if (!target.__node_ts_cache_method_run_queue) {
+        target.__node_ts_cache_method_run_queue = {};
+      }
 
-                if (isAsync) {
-                    return await methodCall
-                } else {
-                    return methodCall
-                }
-            }
+      if (target.__node_ts_cache_method_run_queue[cacheKey]) {
+        debug(`Method is already enqueued ${cacheKey}`);
 
-            if (!target.__node_ts_cache_method_run_queue) {
-                target.__node_ts_cache_method_run_queue = {}
-            }
+        return target.__node_ts_cache_method_run_queue[cacheKey];
+      }
 
-            if (target.__node_ts_cache_method_run_queue[cacheKey]) {
-                debug(`Method is already enqueued ${cacheKey}`)
+      target.__node_ts_cache_method_run_queue[cacheKey] = (async () => {
+        try {
+          const entry = await container.getItem(cacheKey);
 
-                return target.__node_ts_cache_method_run_queue[cacheKey]
-            }
+          if (entry) {
+            debug(`Cache HIT ${cacheKey}`);
 
-            target.__node_ts_cache_method_run_queue[cacheKey] = (async () => {
-                try {
-                    const entry = await container.getItem(cacheKey)
+            return entry.content;
+          }
 
-                    if (entry) {
-                        debug(`Cache HIT ${cacheKey}`)
+          debug(`Cache MISS ${cacheKey}`);
 
-                        return entry.content
-                    }
+          const methodResult = await runOriginalMethod();
 
-                    debug(`Cache MISS ${cacheKey}`)
+          await container.setItem(cacheKey, methodResult, options);
 
-                    const methodResult = await runOriginalMethod()
-
-                    await container.setItem(cacheKey, methodResult, options)
-
-                    return methodResult
-                } finally {
-                    target.__node_ts_cache_method_run_queue![cacheKey] =
-                        undefined
-                }
-            })()
-
-            return target.__node_ts_cache_method_run_queue[cacheKey]
+          return methodResult;
+        } finally {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          target.__node_ts_cache_method_run_queue![cacheKey] = undefined;
         }
+      })();
 
-        debug(`Added caching for method ${className}:${methodName.toString()}`)
+      return target.__node_ts_cache_method_run_queue[cacheKey];
+    };
 
-        return descriptor
-    }
+    debug(`Added caching for method ${className}:${methodName.toString()}`);
+
+    return descriptor;
+  };
 }

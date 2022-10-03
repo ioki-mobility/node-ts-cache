@@ -21,6 +21,7 @@ _Note: The underlying storage layer must be installed separately._
 | [memory](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-memory)| ```yarn add @boredland/node-ts-cache-storage-memory```|
 | [node-fs](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-node-fs)| ```yarn add @boredland/node-ts-cache-storage-node-fs```|
 | [ioredis](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-ioredis)| ```yarn add @boredland/node-ts-cache-storage-ioredis```|
+| [postgres](https://www.npmjs.com/package/@boredland/node-ts-cache-storage-pg)| ```yarn add @boredland/node-ts-cache-storage-pg```|
 
 ## Usage
 

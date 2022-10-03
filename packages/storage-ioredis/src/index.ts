@@ -1,34 +1,38 @@
-import type { Redis } from "ioredis"
-import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
-import superjson from "superjson"
+import type { Redis } from "ioredis";
+import type { CachedItem, Storage } from "@boredland/node-ts-cache";
+import superjson from "superjson";
 
-export class IoRedisStorage implements IStorage {
-    constructor(private ioRedisInstance: Redis) { }
+export class IoRedisStorage implements Storage {
+  constructor(private ioRedisInstance: Redis) {}
 
-    async clear(): Promise<void> {
-        await this.ioRedisInstance.flushdb()
+  async clear(): Promise<void> {
+    await this.ioRedisInstance.flushdb();
+  }
+
+  async getItem(key: string): Promise<CachedItem | undefined> {
+    const response = await this.ioRedisInstance.get(key);
+
+    if (response === undefined || response === null || response === "") {
+      return undefined;
     }
 
-    async getItem(key: string): Promise<CachedItem | undefined> {
-        const response = await this.ioRedisInstance.get(key)
+    return superjson.parse(response);
+  }
 
-        if (response === undefined || response === null || response === "") {
-            return undefined
-        }
-
-        return superjson.parse(response);
+  async setItem(key: string, content: CachedItem): Promise<void> {
+    if (content.meta.isLazy || !content.meta.ttl) {
+      await this.ioRedisInstance.set(key, superjson.stringify(content));
+      return;
     }
+    await this.ioRedisInstance.set(
+      key,
+      superjson.stringify(content),
+      "PX",
+      content.meta.ttl
+    );
+  }
 
-    async setItem(key: string, content: CachedItem | undefined): Promise<void> {
-        if (content === undefined) {
-            await this.ioRedisInstance.del(key)
-            return
-        }
-
-        if (content.meta.isLazy) {
-            await this.ioRedisInstance.set(key, superjson.stringify(content))
-            return;
-        }
-        await this.ioRedisInstance.set(key, superjson.stringify(content), 'PX', content.meta.ttl)
-    }
+  async removeItem(key: string): Promise<void> {
+    await this.ioRedisInstance.unlink(key);
+  }
 }
