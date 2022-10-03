@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CachedItem<T = any> = {
     content: T
     meta: {
@@ -21,6 +22,7 @@ export type CachingOptions = {
         /** The method name being decorated */
         methodName: string
         /** The arguments passed to the method when called */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         args: any[]
     }) => string
 };

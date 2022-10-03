@@ -4,7 +4,7 @@ import superjson from "superjson"
 
 export class NodeFsStorage implements Storage {
     constructor(public jsonFilePath: string) {
-        let exists: boolean = false;
+        let exists = false;
         fs.open(jsonFilePath, 'r', function (error) {
             exists = !!error;
         });
@@ -27,23 +27,23 @@ export class NodeFsStorage implements Storage {
 
     public async removeItem(key: string): Promise<void> {
         const cache = await this.getCacheObject()
-        cache[key] = undefined
+        delete cache[key]
         await this.setCache(cache)
     }
 
     public async clear(): Promise<void> {
-        await this.createEmptyCache()
+        this.createEmptyCache()
     }
 
     private createEmptyCache(): void {
         fs.writeFileSync(this.jsonFilePath, superjson.stringify({}))
     }
 
-    private async setCache(newCache: any): Promise<void> {
+    private async setCache(newCache: unknown): Promise<void> {
         await fs.promises.writeFile(this.jsonFilePath, superjson.stringify(newCache))
     }
 
-    private async getCacheObject(): Promise<any> {
+    private async getCacheObject(): Promise<Record<string, CachedItem>> {
         return superjson.parse(
             (await fs.promises.readFile(this.jsonFilePath)).toString()
         )

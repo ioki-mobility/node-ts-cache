@@ -19,7 +19,7 @@ export class PgStorage implements Storage {
         await this.rawQuery(`INSERT INTO ${this.tableName} (key, value) VALUES ('${key}', '${JSON.stringify(value)}') ON CONFLICT (key) DO UPDATE SET value = '${JSON.stringify(value)}'`)
     }
 
-    async removeItem(key: any): Promise<void> {
+    async removeItem(key: string): Promise<void> {
         await this.rawQuery(`DELETE FROM ${this.tableName} WHERE key = '${key}'`)
     }
 }

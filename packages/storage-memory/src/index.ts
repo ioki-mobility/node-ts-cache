@@ -1,9 +1,7 @@
 import type { CachedItem, Storage } from "@boredland/node-ts-cache"
 
 export class MemoryStorage implements Storage {
-    private memCache: any = {}
-
-    constructor() { }
+    private memCache: Record<string, CachedItem> = {}
 
     public async getItem(key: string): Promise<CachedItem | undefined> {
         return this.memCache[key]
@@ -14,7 +12,7 @@ export class MemoryStorage implements Storage {
     }
 
     public async removeItem(key: string): Promise<void> {
-        this.memCache[key] = undefined
+        delete this.memCache[key]
     }
 
     public async clear(): Promise<void> {

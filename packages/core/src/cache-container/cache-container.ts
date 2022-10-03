@@ -33,7 +33,7 @@ export class CacheContainer {
 
     public async setItem(
         key: string,
-        content: any,
+        content: unknown,
         options?: Partial<CachingOptions>
     ): Promise<void> {
         const finalOptions = {

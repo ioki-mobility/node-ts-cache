@@ -29,8 +29,8 @@ export const withCacheFactory = (container: CacheContainer) => {
         options: WithCacheOptions<Parameters> = {},
     ) => {
         return async (...parameters: Parameters): Promise<Result> => {
-            let { prefix, calculateKey, ...rest } = options;
-            prefix = prefix ?? 'default'
+            const {  calculateKey, ...rest } = options;
+            const prefix = options.prefix ?? 'default'
             const key = `${operation.name}:${prefix}:${calculateKey ? calculateKey(parameters) : JSON.stringify(parameters)}`;
             const cachedResponse = await container.getItem<Awaited<Result>>(key);
 

@@ -18,12 +18,13 @@ export function Cache(
     options?: Partial<CachingOptions>
 ): MethodDecorator {
     return function (
-        target: Object & {
+        target: unknown & {
             __node_ts_cache_method_run_queue?: {
-                [key: string]: Promise<any> | undefined
+                [key: string]: Promise<unknown> | undefined
             }
         },
         methodName: string | symbol,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         descriptor: TypedPropertyDescriptor<any>
     ) {
         const originalMethod = descriptor.value
@@ -74,6 +75,7 @@ export function Cache(
 
                     return methodResult
                 } finally {
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     target.__node_ts_cache_method_run_queue![cacheKey] =
                         undefined
                 }

@@ -10,7 +10,7 @@ const testingFunction = async ({ a, b }: { a: string; b: number }) => {
     return `${a}-${b}`;
 };
 
-const getUserFromBackend = jest.fn<{ username: string, level: number }, any>()
+const getUserFromBackend = jest.fn<{ username: string, level: number }, unknown[]>()
     .mockReturnValueOnce({ username: "max", level: 13 })
     .mockReturnValueOnce({ username: "user-two", level: 34 })
     .mockReturnValueOnce({ username: "user-three", level: 127 });
@@ -148,7 +148,7 @@ export const storageTestFactory = (storage: Storage) => {
 
         it("should store using a custom calculateKey function and prefix", async () => {
             const wrappedFn = withCacheFactory(cache)(testingFunction, {
-                calculateKey: (_input) => "test",
+                calculateKey: () => "test",
                 prefix: "great",
             });
 
