@@ -36,11 +36,11 @@
   "devDependencies": {
     "ioredis": "^5.2.3",
     "ioredis-mock": "^8",
-    "@boredland/node-ts-cache": "^5.1.0"
+    "@boredland/node-ts-cache": "^6.0.0"
   },
   "peerDependencies": {
     "ioredis": "^5",
-    "@boredland/node-ts-cache": "^5.1.0"
+    "@boredland/node-ts-cache": "^6.0.0"
   },
   "dependencies": {
     "superjson": "1.10.0"

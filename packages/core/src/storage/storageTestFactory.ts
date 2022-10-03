@@ -26,12 +26,12 @@ export const storageTestFactory = (storage: Storage) => {
   });
 
   describe("direct usage", () => {
-    it("should initialize the pg storage correctly", () => {
+    it("should initialize the storage correctly", () => {
       expect(cache).not.toBeNull();
       expect(cache).not.toBeUndefined();
     });
 
-    it("should add and retrieve string values from the pg storage", async () => {
+    it("should add and retrieve string values from the storage", async () => {
       await cache.setItem("k1", "test1");
       const k1 = await cache.getItem("k1");
       expect(k1?.content).toBe("test1");
@@ -41,7 +41,7 @@ export const storageTestFactory = (storage: Storage) => {
       expect(k2?.content).toBe("test2");
     });
 
-    it("should add and retrieve nested values from the pg storage", async () => {
+    it("should add and retrieve nested values from the storage", async () => {
       const v1 = { data: { name: "deep1" } };
       await cache.setItem("k1", v1);
       const k1 = await cache.getItem("k1");

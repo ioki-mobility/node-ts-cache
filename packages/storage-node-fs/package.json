@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/boredland/node-ts-cache#readme",
   "peerDependencies": {
-    "@boredland/node-ts-cache": "^5.1.0"
+    "@boredland/node-ts-cache": "^6.0.0"
   },
   "devDependencies": {
-    "@boredland/node-ts-cache": "^5.1.0"
+    "@boredland/node-ts-cache": "^6.0.0"
   },
   "dependencies": {
     "superjson": "1.10.0"
