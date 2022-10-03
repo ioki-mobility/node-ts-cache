@@ -25,10 +25,22 @@ export const decoratorTestFactory = (storage: Storage) => {
                 return Promise.resolve(data)
             }
 
+            @Cache(cache, { ttl: 0.5, isLazy: false })
+            public async getUsersAsync(): Promise<string[]> {
+                spy();
+                return Promise.resolve(data)
+            }
+
             @Cache(cache, { ttl: 0.5, isLazy: true })
             public getUsersPromiseLazy(): Promise<string[]> {
                 spy();
                 return Promise.resolve(data)
+            }
+
+            @Cache(cache, { ttl: 0.5, isLazy: true })
+            public getUsers(): string[] {
+                spy();
+                return data
             }
         }
 
@@ -80,6 +92,27 @@ export const decoratorTestFactory = (storage: Storage) => {
 
             const fromCache = await cache.getItem<string[]>("TestClass1:getUsersPromise:[]")
             expect(fromCache?.content).toStrictEqual(data)
+        })
+
+        it("should cache async fn response", async () => {
+            const myClass = new TestClass1()
+
+            const response = await myClass.getUsersAsync()
+
+            expect(response).toStrictEqual(data)
+            expect(spy).toHaveBeenCalledTimes(1)
+
+            const fromCache = await cache.getItem<string[]>("TestClass1:getUsersAsync:[]")
+            expect(fromCache?.content).toStrictEqual(data)
+        })
+
+        it("should cache sync fn response", async () => {
+            const myClass = new TestClass1()
+
+            const response = await myClass.getUsers()
+
+            expect(response).toStrictEqual(data)
+            expect(spy).toHaveBeenCalledTimes(1)
         })
 
         it("should use cache for Promise response", async () => {

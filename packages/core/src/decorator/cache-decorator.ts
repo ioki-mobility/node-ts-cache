@@ -41,18 +41,9 @@ export function Cache(
                 ? options.calculateKey(keyOptions)
                 : jsonCalculateKey(keyOptions)
 
-            const runOriginalMethod = async () => {
+            const runOriginalMethod = () => {
                 const methodCall = originalMethod.apply(this, args)
-
-                const isAsync =
-                    methodCall?.constructor?.name === "AsyncFunction" ||
-                    methodCall?.constructor?.name === "Promise"
-
-                if (isAsync) {
-                    return await methodCall
-                } else {
-                    return methodCall
-                }
+                return methodCall
             }
 
             if (!target.__node_ts_cache_method_run_queue) {
