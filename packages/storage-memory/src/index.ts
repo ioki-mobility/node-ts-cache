@@ -1,6 +1,6 @@
-import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
+import type { CachedItem, Storage } from "@boredland/node-ts-cache"
 
-export class MemoryStorage implements IStorage {
+export class MemoryStorage implements Storage {
     private memCache: any = {}
 
     constructor() { }
@@ -9,8 +9,12 @@ export class MemoryStorage implements IStorage {
         return this.memCache[key]
     }
 
-    public async setItem(key: string, content: CachedItem | undefined): Promise<void> {
+    public async setItem(key: string, content: CachedItem): Promise<void> {
         this.memCache[key] = content
+    }
+
+    public async removeItem(key: string): Promise<void> {
+        this.memCache[key] = undefined
     }
 
     public async clear(): Promise<void> {

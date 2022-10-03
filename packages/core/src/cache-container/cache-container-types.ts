@@ -2,7 +2,7 @@ export type CachedItem<T = any> = {
     content: T
     meta: {
         createdAt: number
-        ttl: number
+        ttl: number | null
         isLazy: boolean
     }
 }

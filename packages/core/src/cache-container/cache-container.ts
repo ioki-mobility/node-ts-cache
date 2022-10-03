@@ -1,5 +1,5 @@
 import Debug from "debug"
-import type { IStorage } from "../storage"
+import type { Storage } from "../storage"
 import type { CachedItem, CachingOptions } from "./cache-container-types"
 
 const debug = Debug("node-ts-cache")
@@ -7,7 +7,7 @@ const debug = Debug("node-ts-cache")
 const DEFAULT_TTL_SECONDS = 60
 
 export class CacheContainer {
-    constructor(private storage: IStorage) { }
+    constructor(private storage: Storage) { }
 
     public async getItem<T>(key: string): Promise<{ content: T, meta: { expired: boolean, createdAt: number } } | undefined> {
         const item = await this.storage.getItem(key)
@@ -34,7 +34,7 @@ export class CacheContainer {
     public async setItem(
         key: string,
         content: any,
-        options: Partial<CachingOptions>
+        options?: Partial<CachingOptions>
     ): Promise<void> {
         const finalOptions = {
             ttl: DEFAULT_TTL_SECONDS,
@@ -46,7 +46,7 @@ export class CacheContainer {
         const meta: CachedItem<typeof content>["meta"] = {
             createdAt: Date.now(),
             isLazy: finalOptions.isLazy,
-            ttl: finalOptions.isCachedForever ? Infinity : finalOptions.ttl * 1000
+            ttl: finalOptions.isCachedForever ? null : finalOptions.ttl * 1000
         }
 
         await this.storage.setItem(key, { meta, content })
@@ -59,11 +59,11 @@ export class CacheContainer {
     }
 
     private isItemExpired(item: CachedItem): boolean {
-        if (item.meta.ttl === Infinity) return false;
+        if (item.meta.ttl === null) return false;
         return Date.now() > item.meta.createdAt + item.meta.ttl
     }
 
-    private async unsetKey(key: string): Promise<void> {
-        await this.storage.setItem(key, undefined)
+    public async unsetKey(key: string): Promise<void> {
+        await this.storage.removeItem(key)
     }
 }

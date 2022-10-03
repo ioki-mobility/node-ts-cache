@@ -1,8 +1,8 @@
 import fs from "fs"
-import type { CachedItem, IStorage } from "@boredland/node-ts-cache"
+import type { CachedItem, Storage } from "@boredland/node-ts-cache"
 import superjson from "superjson"
 
-export class NodeFsStorage implements IStorage {
+export class NodeFsStorage implements Storage {
     constructor(public jsonFilePath: string) {
         let exists: boolean = false;
         fs.open(jsonFilePath, 'r', function (error) {
@@ -17,11 +17,17 @@ export class NodeFsStorage implements IStorage {
         return (await this.getCacheObject())[key]
     }
 
-    public async setItem(key: string, content: any): Promise<void> {
+    public async setItem(key: string, content: CachedItem): Promise<void> {
         const cache = await this.getCacheObject()
 
         cache[key] = content
 
+        await this.setCache(cache)
+    }
+
+    public async removeItem(key: string): Promise<void> {
+        const cache = await this.getCacheObject()
+        cache[key] = undefined
         await this.setCache(cache)
     }
 
