@@ -1,0 +1,40 @@
+{
+  "name": "@boredland/node-ts-cache-storage-pg",
+  "description": "Postgres storage module for node-ts-cache",
+  "version": "0.0.1",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig-build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boredland/node-ts-cache.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "cache",
+    "typescript",
+    "ts",
+    "caching",
+    "cache",
+    "postgres",
+    "postgresql",
+    "node-cache",
+    "ts-cache"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boredland/node-ts-cache/issues"
+  },
+  "homepage": "https://github.com/boredland/node-ts-cache#readme",
+  "peerDependencies": {
+    "@boredland/node-ts-cache": "^5.1.0"
+  },
+  "devDependencies": {
+    "@boredland/node-ts-cache": "^5.1.0",
+    "pg-mem": "^2.6.3"
+  }
+}
