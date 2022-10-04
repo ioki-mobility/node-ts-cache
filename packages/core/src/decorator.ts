@@ -1,5 +1,5 @@
 import Debug from "debug";
-import type { CacheContainer, CachingOptions } from "../cache-container";
+import type { CacheContainer, CachingOptions } from "./cacheContainer";
 
 const debug = Debug("node-ts-cache");
 
@@ -13,6 +13,12 @@ const jsonCalculateKey = <Arguments>(data: {
   )}`;
 };
 
+/**
+ * Decorator to be used on class methods to be cached
+ * @param container - container instance to be used for the method
+ * @param options - caching options to be used for the method
+ * @returns the return value of the method, cached or otherwise
+ */
 export function Cache(
   container: CacheContainer,
   options?: Partial<CachingOptions>

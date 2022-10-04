@@ -3,6 +3,10 @@ import type { CachedItem, Storage } from "@boredland/node-ts-cache";
 import type { GetResponse } from "@elastic/elasticsearch/lib/api/types";
 
 export class ElasticSearchStorage implements Storage {
+  /**
+   * @param indexName - name of the elasticsearch index
+   * @param elasticsearchInstance - instance of an elasticsearch client
+   */
   constructor(
     private indexName: string,
     private elasticsearchInstance: Client

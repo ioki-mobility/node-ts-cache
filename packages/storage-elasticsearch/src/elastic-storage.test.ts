@@ -1,6 +1,6 @@
 import { ElasticSearchStorage } from ".";
-import { storageTestFactory } from "../../core/src/storage/storageTestFactory";
-import { decoratorTestFactory } from "../../core/src/decorator/decoratorTestFactory";
+import { storageTestFactory } from "../../core/src/utils/storageTestFactory";
+import { decoratorTestFactory } from "../../core/src/utils/decoratorTestFactory";
 import { Client } from "@elastic/elasticsearch";
 import Mock from "@elastic/elasticsearch-mock";
 import type { CachedItem } from "@boredland/node-ts-cache";

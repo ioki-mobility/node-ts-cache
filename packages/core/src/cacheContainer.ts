@@ -1,10 +1,38 @@
 import Debug from "debug";
-import type { Storage } from "../storage";
-import type { CachedItem, CachingOptions } from "./cache-container-types";
+import type { Storage } from "./storage";
 
 const debug = Debug("node-ts-cache");
 
 const DEFAULT_TTL_SECONDS = 60;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type CachedItem<T = any> = {
+  content: T;
+  meta: {
+    createdAt: number;
+    ttl: number | null;
+    isLazy: boolean;
+  };
+};
+
+export type CachingOptions = {
+  /** (Default: 60) Number of seconds to expire the cachte item */
+  ttl: number;
+  /** (Default: true) If true, expired cache entries will be deleted on touch and returned anyway. If false, entries will be deleted after the given ttl. */
+  isLazy: boolean;
+  /** (Default: false) If true, cache entry has no expiration. */
+  isCachedForever: boolean;
+  /** (Default: JSON.stringify combination of className, methodName and call args) */
+  calculateKey: (data: {
+    /** The class name for the method being decorated */
+    className: string;
+    /** The method name being decorated */
+    methodName: string;
+    /** The arguments passed to the method when called */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    args: any[];
+  }) => string;
+};
 
 export class CacheContainer {
   constructor(private storage: Storage) {}

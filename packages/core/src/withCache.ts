@@ -1,4 +1,4 @@
-import type { CacheContainer, CachingOptions } from "./cache-container";
+import type { CacheContainer, CachingOptions } from "./cacheContainer";
 
 type WithCacheOptions<Parameters> = Partial<
   Omit<CachingOptions, "calculateKey">

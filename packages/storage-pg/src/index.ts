@@ -1,6 +1,10 @@
 import type { CachedItem, Storage } from "@boredland/node-ts-cache";
 
 export class PgStorage implements Storage {
+  /**
+   * @param tableName - table to store the cache in (have to be provisioned outside of thie module)
+   * @param rawQuery - method that return the result of a query as an array: `{ key: string, value: CachedItem }[]`
+   */
   constructor(
     private tableName: string,
     private rawQuery: (

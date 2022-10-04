@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { NodeFsStorage } from ".";
-import { storageTestFactory } from "../../core/src/storage/storageTestFactory";
-import { decoratorTestFactory } from "../../core/src/decorator/decoratorTestFactory";
+import { storageTestFactory } from "../../core/src/utils/storageTestFactory";
+import { decoratorTestFactory } from "../../core/src/utils/decoratorTestFactory";
 
 describe("node-fs-storage", () => {
   const cacheFile = path.join(__dirname, "cache-test.json");
