@@ -1,5 +1,11 @@
 # @boredland/node-ts-cache
 
+## 6.0.2
+
+### Patch Changes
+
+- 94fda42: docs: document all interfaces and classes
+
 ## 6.0.1
 
 ### Patch Changes

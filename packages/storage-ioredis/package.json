@@ -1,7 +1,7 @@
 {
   "name": "@boredland/node-ts-cache-storage-ioredis",
   "description": "Redis storage module for node-ts-cache",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,11 +36,11 @@
   "devDependencies": {
     "ioredis": "^5.2.3",
     "ioredis-mock": "^8",
-    "@boredland/node-ts-cache": "^6.0.1"
+    "@boredland/node-ts-cache": "^6.0.2"
   },
   "peerDependencies": {
     "ioredis": "^5",
-    "@boredland/node-ts-cache": "^6.0.1"
+    "@boredland/node-ts-cache": "^6.0.2"
   },
   "dependencies": {
     "superjson": "1.10.0"

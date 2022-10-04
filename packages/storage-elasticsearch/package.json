@@ -1,7 +1,7 @@
 {
   "name": "@boredland/node-ts-cache-storage-elasticsearch",
   "description": "ElasticSearch storage module for node-ts-cache",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/boredland/node-ts-cache#readme",
   "peerDependencies": {
-    "@boredland/node-ts-cache": "^6.0.1",
+    "@boredland/node-ts-cache": "^6.0.2",
     "@elastic/elasticsearch": "^8.4.0"
   },
   "devDependencies": {
-    "@boredland/node-ts-cache": "^6.0.1",
+    "@boredland/node-ts-cache": "^6.0.2",
     "@elastic/elasticsearch": "^8.4.0",
     "@elastic/elasticsearch-mock": "^2.0.0"
   }

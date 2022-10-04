@@ -1,5 +1,13 @@
 # @boredland/node-ts-cache-storage-pg
 
+## 1.0.2
+
+### Patch Changes
+
+- 94fda42: docs: document all interfaces and classes
+- Updated dependencies [94fda42]
+  - @boredland/node-ts-cache@6.0.2
+
 ## 1.0.1
 
 ### Patch Changes
