@@ -3,8 +3,6 @@ import type { Storage } from "./storage";
 
 const debug = Debug("node-ts-cache");
 
-const DEFAULT_TTL_SECONDS = 60;
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CachedItem<T = any> = {
   content: T;
@@ -16,12 +14,10 @@ export type CachedItem<T = any> = {
 };
 
 export type CachingOptions = {
-  /** (Default: 60) Number of seconds to expire the cachte item */
-  ttl: number;
+  /** Number of milliseconds to expire the cachte item - defaults to forever */
+  ttl: number | null;
   /** (Default: true) If true, expired cache entries will be deleted on touch and returned anyway. If false, entries will be deleted after the given ttl. */
   isLazy: boolean;
-  /** (Default: false) If true, cache entry has no expiration. */
-  isCachedForever: boolean;
   /** (Default: JSON.stringify combination of className, methodName and call args) */
   calculateKey: (data: {
     /** The class name for the method being decorated */
@@ -67,16 +63,15 @@ export class CacheContainer {
     options?: Partial<CachingOptions>
   ): Promise<void> {
     const finalOptions = {
-      ttl: DEFAULT_TTL_SECONDS,
+      ttl: null,
       isLazy: true,
-      isCachedForever: false,
       ...options,
     };
 
     const meta: CachedItem<typeof content>["meta"] = {
       createdAt: Date.now(),
       isLazy: finalOptions.isLazy,
-      ttl: finalOptions.isCachedForever ? null : finalOptions.ttl * 1000,
+      ttl: finalOptions.ttl,
     };
 
     await this.storage.setItem(key, { meta, content });

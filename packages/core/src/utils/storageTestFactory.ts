@@ -116,7 +116,7 @@ export const storageTestFactory = (storage: Storage) => {
       const wrappedFn = withCacheFactory(cache)(testingFunction, {
         isLazy: true,
         afterExpired,
-        ttl: 1,
+        ttl: 1000,
       });
 
       const result = await wrappedFn({ a: "wrapped-hello", b: 555 });
@@ -250,7 +250,7 @@ export const storageTestFactory = (storage: Storage) => {
     };
 
     it("should set cache item correctly with isLazy", async () => {
-      await cache.setItem("test", data, { ttl: 10 });
+      await cache.setItem("test", data, { ttl: 10000 });
       const entry = await cache.getItem<ITestType>("test");
 
       expect(entry?.content).toStrictEqual(data);
@@ -263,7 +263,7 @@ export const storageTestFactory = (storage: Storage) => {
     });
 
     it("should return item if cache expired with isLazy and remove it", async () => {
-      await cache.setItem("test", data, { ttl: 0.5, isLazy: true });
+      await cache.setItem("test", data, { ttl: 500, isLazy: true });
       await sleep(750);
       const entry = await cache.getItem<ITestType>("test");
       expect(entry?.content).toStrictEqual(data);
@@ -273,18 +273,17 @@ export const storageTestFactory = (storage: Storage) => {
     });
 
     it("Should not find cache item after ttl with isLazy disabled", async () => {
-      await cache.setItem("test", data, { ttl: 0.5, isLazy: false });
+      await cache.setItem("test", data, { ttl: 500, isLazy: false });
       await sleep(750);
 
       const entry = await cache.getItem<ITestType>("test");
       expect(entry).toStrictEqual(undefined);
     });
 
-    it("Should ignore isLazy and ttl options if isCachedForever", async () => {
+    it("Should ignore isLazy if ttl is null", async () => {
       await cache.setItem("test", data, {
-        ttl: 0.5,
-        isLazy: false,
-        isCachedForever: true,
+        ttl: null,
+        isLazy: true,
       });
       await sleep(750);
 

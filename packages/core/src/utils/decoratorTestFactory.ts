@@ -16,25 +16,25 @@ export const decoratorTestFactory = (storage: Storage) => {
     });
 
     class TestClass1 {
-      @Cache(cache, { ttl: 0.5, isLazy: false })
+      @Cache(cache, { ttl: 500, isLazy: false })
       public getUsersPromise(): Promise<string[]> {
         spy();
         return Promise.resolve(data);
       }
 
-      @Cache(cache, { ttl: 0.5, isLazy: false })
+      @Cache(cache, { ttl: 500, isLazy: false })
       public async getUsersAsync(): Promise<string[]> {
         spy();
         return Promise.resolve(data);
       }
 
-      @Cache(cache, { ttl: 0.5, isLazy: true })
+      @Cache(cache, { ttl: 500, isLazy: true })
       public getUsersPromiseLazy(): Promise<string[]> {
         spy();
         return Promise.resolve(data);
       }
 
-      @Cache(cache, { ttl: 0.5, isLazy: true })
+      @Cache(cache, { ttl: 500, isLazy: true })
       public getUsers(): string[] {
         spy();
         return data;
@@ -42,13 +42,13 @@ export const decoratorTestFactory = (storage: Storage) => {
     }
 
     class TestClass3 {
-      @Cache(cache, { ttl: 1, calculateKey: (data) => data.methodName })
+      @Cache(cache, { ttl: 1000, calculateKey: (data) => data.methodName })
       public getUsers(): string[] {
         spy();
         return data;
       }
 
-      @Cache(cache, { ttl: 1, calculateKey: (data) => data.methodName })
+      @Cache(cache, { ttl: 1000, calculateKey: (data) => data.methodName })
       public getUsersPromise(): Promise<string[]> {
         spy();
         return Promise.resolve(data);
@@ -56,7 +56,7 @@ export const decoratorTestFactory = (storage: Storage) => {
     }
 
     class TestClass4 {
-      @Cache(cache, { ttl: 1, calculateKey: (data) => data.methodName })
+      @Cache(cache, { ttl: 1000, calculateKey: (data) => data.methodName })
       public getUsersPromise(): Promise<string[]> {
         spy();
         return Promise.resolve(data);
@@ -64,7 +64,7 @@ export const decoratorTestFactory = (storage: Storage) => {
     }
 
     class TestClass5 {
-      @Cache(cache, { ttl: 10 })
+      @Cache(cache, { ttl: 10000 })
       public async getUser(name: string) {
         spy();
         if (name == "name1") {
