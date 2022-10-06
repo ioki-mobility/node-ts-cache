@@ -11,7 +11,7 @@ describe("pg-storage", () => {
   const pgClient = new PGClient();
   const storage = new PgStorage(
     tableName,
-    async (query) => (await pgClient.query(query)).rows
+    async (query, values) => (await pgClient.query(query, values)).rows
   );
 
   beforeAll(async () => {
