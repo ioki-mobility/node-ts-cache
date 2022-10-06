@@ -1,6 +1,6 @@
 import type { CacheContainer, CachingOptions } from "./cacheContainer";
 
-type WithCacheOptions<Parameters> = Partial<
+type WithCacheOptions<Parameters, Result> = Partial<
   Omit<CachingOptions, "calculateKey">
 > & {
   /** an optional prefix to prepend to the key */
@@ -9,6 +9,8 @@ type WithCacheOptions<Parameters> = Partial<
   calculateKey?: (input: Parameters) => string;
   /** an optional function that is called when a lazy item has expired and thus got removed  */
   afterExpired?: () => Promise<void>;
+  /** an optional function that is called just before the result is stored to the storage */
+  shouldStore?: (result: Awaited<Result>) => boolean;
 };
 
 /**
@@ -28,7 +30,7 @@ export const withCacheFactory = (container: CacheContainer) => {
     Result extends Promise<unknown>
   >(
     operation: (...parameters: Parameters) => Result,
-    options: WithCacheOptions<Parameters> = {}
+    options: WithCacheOptions<Parameters, Result> = {}
   ) => {
     return async (...parameters: Parameters): Promise<Result> => {
       const { calculateKey, ...rest } = options;
@@ -46,7 +48,9 @@ export const withCacheFactory = (container: CacheContainer) => {
       }
 
       const result = await operation(...parameters);
-      await container.setItem(key, result, rest);
+      if (!options.shouldStore || options.shouldStore(result)) {
+        await container.setItem(key, result, rest);
+      }
       return result;
     };
   };

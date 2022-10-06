@@ -133,6 +133,52 @@ export const storageTestFactory = (storage: Storage) => {
     });
   });
 
+  describe("store conditions", () => {
+    it("should call shouldStore and store based on positive verdict", async () => {
+      const shouldStoreSpy = jest.fn();
+      const wrappedFn = withCacheFactory(cache)(testingFunction, {
+        isLazy: true,
+        shouldStore: (result) => {
+          shouldStoreSpy();
+          return result === "wrapped-hello-555";
+        },
+        ttl: 1,
+      });
+
+      const result = await wrappedFn({ a: "wrapped-hello", b: 555 });
+      expect(result).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+      expect(testingFunctionSpy).toHaveBeenCalledTimes(1);
+      expect(shouldStoreSpy).toHaveBeenCalledTimes(1);
+
+      const resultNext = await wrappedFn({ a: "wrapped-hello", b: 555 });
+      expect(resultNext).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+      expect(testingFunctionSpy).toHaveBeenCalledTimes(1);
+      expect(shouldStoreSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call shouldStore and not store based on negative verdict", async () => {
+      const shouldStoreSpy = jest.fn();
+      const wrappedFn = withCacheFactory(cache)(testingFunction, {
+        isLazy: true,
+        shouldStore: (result) => {
+          shouldStoreSpy();
+          return result !== "wrapped-hello-555";
+        },
+        ttl: 1,
+      });
+
+      const result = await wrappedFn({ a: "wrapped-hello", b: 555 });
+      expect(result).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+      expect(testingFunctionSpy).toHaveBeenCalledTimes(1);
+      expect(shouldStoreSpy).toHaveBeenCalledTimes(1);
+
+      const resultNext = await wrappedFn({ a: "wrapped-hello", b: 555 });
+      expect(resultNext).toMatchInlineSnapshot(`"wrapped-hello-555"`);
+      expect(testingFunctionSpy).toHaveBeenCalledTimes(2);
+      expect(shouldStoreSpy).toHaveBeenCalledTimes(2);
+    });
+  });
+
   describe("wrapped functions", () => {
     it("should return the correct value when wrapped", async () => {
       const wrappedFn = withCacheFactory(cache)(testingFunction);
