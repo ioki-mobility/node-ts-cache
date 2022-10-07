@@ -6,12 +6,12 @@ An IoRedis instance must be created and passed to the library.
 See https://github.com/luin/ioredis#connect-to-redis for available options.
 
 ```bash
-yarn add @boredland/node-ts-cache @boredland/node-ts-cache-storage-ioredis ioredis
+yarn add @ioki/node-ts-cache @ioki/node-ts-cache-storage-ioredis ioredis
 ```
 
 ```ts
-import { Cache, CacheContainer } from "@boredland/node-ts-cache"
-import { IoRedisStorage } from "@boredland/node-ts-cache-storage-ioredis"
+import { Cache, CacheContainer } from "@ioki/node-ts-cache"
+import { IoRedisStorage } from "@ioki/node-ts-cache-storage-ioredis"
 import IoRedis from "ioredis"
 
 const ioRedisInstance = new IoRedis({

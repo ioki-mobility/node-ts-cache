@@ -1,5 +1,6 @@
 # MIT License
 
+Copyright (c) 2022 ioki GmbH
 Copyright (c) 2022 Jonas Strassel
 Copyright (c) 2017 Himmet Avsar
 

@@ -1,4 +1,4 @@
-# @boredland/node-ts-cache
+# @ioki/node-ts-cache
 
 ## 6.0.2
 
