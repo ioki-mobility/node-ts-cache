@@ -93,6 +93,14 @@ class MyService {
 This project uses [debug](https://github.com/visionmedia/debug) to log useful caching information.
 Set environment variable **DEBUG=node-ts-cache** to enable logging.
 
+## Mocking
+
+Just use the memory storage adapter in your tests.
+
+## LICENSE
+
+Distributed under the MIT License. See LICENSE.md for more information.
+
 ## Development & Testing
 
 This project follows the monorepo architecture using yarn workspaces.
@@ -105,3 +113,31 @@ yarn
 yarn build
 yarn test
 ```
+
+## Release
+
+We're using changeset to automate the release process. The only thing to be done is to [commit a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md#i-am-in-a-multi-package-repository-a-mono-repo).
+
+## Credits
+
+As this is a fork of the original [node-ts-cache](https://github.com/havsar/node-ts-cache), all credit goes to the upstream project by [havsar](https://github.com/havsar).
+
+Structural changes have been made by [boredland](https://github.com/havsar) in order to align more with our use-case.
+
+## Contributing (complexity, asc)
+
+1. [join us @ioki](https://ioki.com/about-ioki/jobs/) and make this one of your projects
+2. create issues and pull requests, we're happy to enhance this
+
+## Contact
+
+<a href="https://ioki.com/ioki-devs/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ioki-mobility/transitland-gql-client/blob/main/assets/ioki-light.png?raw=true">
+    <img alt="ioki logo" src="https://github.com/ioki-mobility/transitland-gql-client/blob/main/assets/ioki-dark.png?raw=true">
+  </picture>
+</a>
+
+ioki Mobility - [@ioki_mobility](https://twitter.com/ioki_mobility)
+
+Project Link: [https://github.com/ioki-mobility/node-ts-cache](https://github.com/ioki-mobility/node-ts-cache)
