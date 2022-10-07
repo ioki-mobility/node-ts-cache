@@ -1,4 +1,4 @@
-import type { CachedItem, Storage } from "@boredland/node-ts-cache";
+import type { CachedItem, Storage } from "@ioki/node-ts-cache";
 
 export class MemoryStorage implements Storage {
   private memCache: Record<string, CachedItem> = {};

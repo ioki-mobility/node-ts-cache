@@ -1,4 +1,4 @@
-# @boredland/node-ts-cache-storage-pg
+# @ioki/node-ts-cache-storage-pg
 
 ## 1.0.2
 
@@ -6,7 +6,7 @@
 
 - 94fda42: docs: document all interfaces and classes
 - Updated dependencies [94fda42]
-  - @boredland/node-ts-cache@6.0.2
+  - @ioki/node-ts-cache@6.0.2
 
 ## 1.0.1
 
@@ -14,7 +14,7 @@
 
 - 488787b: feat: elasticsearch storage
 - Updated dependencies [488787b]
-  - @boredland/node-ts-cache@6.0.1
+  - @ioki/node-ts-cache@6.0.1
 
 ## 1.0.0
 
@@ -25,4 +25,4 @@
 ### Patch Changes
 
 - Updated dependencies [779bdc7]
-  - @boredland/node-ts-cache@6.0.0
+  - @ioki/node-ts-cache@6.0.0

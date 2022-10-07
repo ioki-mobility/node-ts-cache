@@ -1,5 +1,5 @@
 {
-  "name": "@boredland/node-ts-cache-storage-ioredis",
+  "name": "@ioki/node-ts-cache-storage-ioredis",
   "description": "Redis storage module for node-ts-cache",
   "version": "7.0.2",
   "private": false,
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boredland/node-ts-cache.git"
+    "url": "git+https://github.com/ioki/node-ts-cache.git"
   },
   "keywords": [
     "node",
@@ -30,17 +30,17 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boredland/node-ts-cache/issues"
+    "url": "https://github.com/ioki/node-ts-cache/issues"
   },
-  "homepage": "https://github.com/boredland/node-ts-cache#readme",
+  "homepage": "https://github.com/ioki/node-ts-cache#readme",
   "devDependencies": {
     "ioredis": "^5.2.3",
     "ioredis-mock": "^8",
-    "@boredland/node-ts-cache": "^6.0.2"
+    "@ioki/node-ts-cache": "^6.0.2"
   },
   "peerDependencies": {
     "ioredis": "^5",
-    "@boredland/node-ts-cache": "^6.0.2"
+    "@ioki/node-ts-cache": "^6.0.2"
   },
   "dependencies": {
     "superjson": "1.10.0"

@@ -5,7 +5,7 @@ Postgres storage module for [node-ts-cache](https://www.npmjs.com/package/node-t
 This module is driver-agnostic. It expects you to bring your own raw query method - something most of the postgres drivers will provide.
 
 ```bash
-yarn add @boredland/node-ts-cache @boredland/node-ts-cache-storage-pg
+yarn add @ioki/node-ts-cache @ioki/node-ts-cache-storage-pg
 ```
 
 In this example, node-postgres (pg) is being used.
@@ -19,8 +19,8 @@ value: jsonb
 The query function should return an array of objects: `{ key: string, value: CacheItem }[]`.
 
 ```ts
-import { PgStorage } from "@boredland/node-ts-cache-storage-pg"
-import { Cache, CacheContainer } from "@boredland/node-ts-cache"
+import { PgStorage } from "@ioki/node-ts-cache-storage-pg"
+import { Cache, CacheContainer } from "@ioki/node-ts-cache"
 import Client from "pg"
 
 const client = new Client()

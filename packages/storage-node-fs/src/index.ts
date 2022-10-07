@@ -1,5 +1,5 @@
 import fs from "fs";
-import type { CachedItem, Storage } from "@boredland/node-ts-cache";
+import type { CachedItem, Storage } from "@ioki/node-ts-cache";
 import superjson from "superjson";
 
 export class NodeFsStorage implements Storage {

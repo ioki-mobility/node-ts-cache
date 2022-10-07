@@ -5,12 +5,12 @@ ElasticSearch storage module for [node-ts-cache](https://www.npmjs.com/package/n
 This module expects you to bring your own instance of ElasticSearch.
 
 ```bash
-yarn add @boredland/node-ts-cache @boredland/node-ts-cache-storage-elasticsearch
+yarn add @ioki/node-ts-cache @ioki/node-ts-cache-storage-elasticsearch
 ```
 
 ```ts
-import { ElasticSearchStorage } from "@boredland/node-ts-cache-storage-elasticsearch"
-import { Cache, CacheContainer } from "@boredland/node-ts-cache"
+import { ElasticSearchStorage } from "@ioki/node-ts-cache-storage-elasticsearch"
+import { Cache, CacheContainer } from "@ioki/node-ts-cache"
 import { Client } from "@elastic/elasticsearch";
 
 const client = new Client({

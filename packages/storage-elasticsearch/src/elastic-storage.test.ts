@@ -3,7 +3,7 @@ import { storageTestFactory } from "../../core/src/utils/storageTestFactory";
 import { decoratorTestFactory } from "../../core/src/utils/decoratorTestFactory";
 import { Client } from "@elastic/elasticsearch";
 import Mock from "@elastic/elasticsearch-mock";
-import type { CachedItem } from "@boredland/node-ts-cache";
+import type { CachedItem } from "@ioki/node-ts-cache";
 
 const mock = new Mock();
 const indexName = "123abcTest";

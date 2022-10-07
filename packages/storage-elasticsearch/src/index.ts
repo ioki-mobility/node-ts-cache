@@ -1,5 +1,5 @@
 import type { Client } from "@elastic/elasticsearch";
-import type { CachedItem, Storage } from "@boredland/node-ts-cache";
+import type { CachedItem, Storage } from "@ioki/node-ts-cache";
 import type { GetResponse } from "@elastic/elasticsearch/lib/api/types";
 
 export class ElasticSearchStorage implements Storage {
