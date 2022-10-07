@@ -1,5 +1,16 @@
 # @ioki/node-ts-cache-storage-pg
 
+## 2.0.0
+
+### Major Changes
+
+- 49212a8: pass values to rawQuery fn so we can use prepared statements
+
+### Patch Changes
+
+- Updated dependencies [49212a8]
+  - @ioki/node-ts-cache@7.0.0
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @ioki/node-ts-cache
 
+## 7.0.0
+
+### Major Changes
+
+- 49212a8: move to ms for ttl and offer shouldStore hook in function wrapper
+
 ## 6.0.2
 
 ### Patch Changes

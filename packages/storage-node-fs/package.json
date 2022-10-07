@@ -1,7 +1,7 @@
 {
   "name": "@ioki/node-ts-cache-storage-node-fs",
   "description": "Nodejs filesystem storage module for node-ts-cache",
-  "version": "7.0.2",
+  "version": "8.0.0",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/ioki/node-ts-cache#readme",
   "peerDependencies": {
-    "@ioki/node-ts-cache": "^6.0.2"
+    "@ioki/node-ts-cache": "^7.0.0"
   },
   "devDependencies": {
-    "@ioki/node-ts-cache": "^6.0.2"
+    "@ioki/node-ts-cache": "^7.0.0"
   },
   "dependencies": {
     "superjson": "1.10.0"

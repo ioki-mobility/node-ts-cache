@@ -1,5 +1,12 @@
 # @ioki/node-ts-cache-storage-elasticsearch
 
+## 7.0.0
+
+### Patch Changes
+
+- Updated dependencies [49212a8]
+  - @ioki/node-ts-cache@7.0.0
+
 ## 6.0.1
 
 ### Patch Changes

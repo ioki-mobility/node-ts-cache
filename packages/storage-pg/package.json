@@ -1,7 +1,7 @@
 {
   "name": "@ioki/node-ts-cache-storage-pg",
   "description": "Postgres storage module for node-ts-cache",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,10 +31,10 @@
   },
   "homepage": "https://github.com/ioki/node-ts-cache#readme",
   "peerDependencies": {
-    "@ioki/node-ts-cache": "^6.0.2"
+    "@ioki/node-ts-cache": "^7.0.0"
   },
   "devDependencies": {
-    "@ioki/node-ts-cache": "^6.0.2",
+    "@ioki/node-ts-cache": "^7.0.0",
     "pg": "^8.8.0",
     "pg-mem": "^2.6.3"
   }

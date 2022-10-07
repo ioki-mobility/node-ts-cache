@@ -1,5 +1,12 @@
 # @ioki/node-ts-cache-storage-memory
 
+## 8.0.0
+
+### Patch Changes
+
+- Updated dependencies [49212a8]
+  - @ioki/node-ts-cache@7.0.0
+
 ## 7.0.2
 
 ### Patch Changes
