@@ -1,6 +1,6 @@
 # @ioki/node-ts-cache
 
-[![CI](https://github.com/ioki/node-ts-cache/actions/workflows/ci.yml/badge.svg)](https://github.com/ioki/node-ts-cache/actions/workflows/ci.yml)
+[![CI](https://github.com/ioki-mobility/node-ts-cache/actions/workflows/ci.yml/badge.svg)](https://github.com/ioki-mobility/node-ts-cache/actions/workflows/ci.yml)
 [![The MIT License](https://img.shields.io/npm/l/node-ts-cache.svg)](http://opensource.org/licenses/MIT)
 [![Coverage Status](https://coveralls.io/repos/github/ioki/node-ts-cache/badge.svg?branch=main)](https://coveralls.io/github/ioki/node-ts-cache?branch=main)
 
@@ -26,7 +26,7 @@ _Note: The underlying storage layer must be installed separately._
 
 ## Usage
 
-### withCacheFactory
+### Wrap your function calls `withCacheFactory`
 
 Function wrapper factory for arbitrary functions. The cache key is caculated based on the parameters passed to the function.
 
@@ -43,7 +43,7 @@ const wrappedFn = withCacheFactory(doThingsCache)(someFn);
 const result = someFn({ a: "lala", b: 123 })
 ```
 
-### With decorator
+### `@Cache` decorator
 
 Caches function response using the given options. By default, uses all arguments to build an unique key.
 
@@ -63,7 +63,7 @@ class MyService {
 }
 ```
 
-### Direct usage
+### Using `getItem` and `setItem` directly
 
 ```ts
 import { CacheContainer } from '@ioki/node-ts-cache'
