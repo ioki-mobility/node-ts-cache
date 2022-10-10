@@ -1,5 +1,11 @@
 # @ioki/node-ts-cache-storage-pg
 
+## 2.0.1
+
+### Patch Changes
+
+- 77fd49f: use question-mark notation instead of dollar-notation in pg-storage
+
 ## 2.0.0
 
 ### Major Changes
