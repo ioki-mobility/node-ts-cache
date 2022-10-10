@@ -9,17 +9,17 @@ export class PgStorage implements Storage {
     private tableName: string,
     private rawQuery: (
       query: string,
-      values?: unknown[]
+      values: unknown[]
     ) => Promise<{ key: string; value: CachedItem }[] | undefined>
   ) {}
 
   async clear(): Promise<void> {
-    await this.rawQuery(`TRUNCATE TABLE ${this.tableName}`);
+    await this.rawQuery(`TRUNCATE TABLE ${this.tableName}`, []);
   }
 
   async getItem(key: string): Promise<CachedItem | undefined> {
     const result = await this.rawQuery(
-      `SELECT key, value FROM ${this.tableName} WHERE key = $1`,
+      `SELECT key, value FROM ${this.tableName} WHERE key = ?`,
       [key]
     );
 
@@ -29,13 +29,14 @@ export class PgStorage implements Storage {
   }
 
   async setItem(key: string, value: CachedItem): Promise<void> {
+    const valueJson = JSON.stringify(value);
     await this.rawQuery(
-      `INSERT INTO ${this.tableName} (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = $2`,
-      [key, JSON.stringify(value)]
+      `INSERT INTO ${this.tableName} (key, value) VALUES (?, ?) ON CONFLICT (key) DO UPDATE SET value = ?`,
+      [key, valueJson, valueJson]
     );
   }
 
   async removeItem(key: string): Promise<void> {
-    await this.rawQuery(`DELETE FROM ${this.tableName} WHERE key = $1`, [key]);
+    await this.rawQuery(`DELETE FROM ${this.tableName} WHERE key = ?`, [key]);
   }
 }

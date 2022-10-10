@@ -2,7 +2,8 @@
 
 Postgres storage module for [node-ts-cache](https://www.npmjs.com/package/node-ts-cache).
 
-This module is driver-agnostic. It expects you to bring your own raw query method - something most of the postgres drivers will provide.
+This module is driver-agnostic. It expects you to bring your own raw query method - something most of the postgres available drivers provide.
+The driver needs to support the question-mark notation for [prepared statements](https://www.postgresql.org/docs/14/ecpg-commands.html#ECPG-PREPARED).
 
 ```bash
 yarn add @ioki/node-ts-cache @ioki/node-ts-cache-storage-pg
