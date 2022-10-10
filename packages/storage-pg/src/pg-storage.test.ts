@@ -7,12 +7,11 @@ describe("pg-storage", () => {
   const tableName = "abc";
   let backup: IBackup;
   const db = newDb();
-  const { Client: PGClient } = db.adapters.createPg();
-  const pgClient = new PGClient();
-  const storage = new PgStorage(
-    tableName,
-    async (query, values) => (await pgClient.query(query, values)).rows
-  );
+  const knex = db.adapters.createKnex() as import("knex");
+  const storage = new PgStorage(tableName, async (query, values) => {
+    const result = await knex.raw(query, values as string[]);
+    return result.rows;
+  });
 
   beforeAll(async () => {
     db.public.declareTable({
