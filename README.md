@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ioki-mobility/node-ts-cache/actions/workflows/ci.yml/badge.svg)](https://github.com/ioki-mobility/node-ts-cache/actions/workflows/ci.yml)
 [![The MIT License](https://img.shields.io/npm/l/node-ts-cache.svg)](http://opensource.org/licenses/MIT)
-[![Coverage Status](https://coveralls.io/repos/github/ioki/node-ts-cache/badge.svg?branch=main)](https://coveralls.io/github/ioki/node-ts-cache?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/ioki-mobility/node-ts-cache/badge.svg?branch=main)](https://coveralls.io/github/ioki/node-ts-cache?branch=main)
 
 Simple and extensible caching module supporting decorators.
 
