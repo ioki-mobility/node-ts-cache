@@ -1,5 +1,13 @@
 # @ioki/node-ts-cache-storage-node-fs
 
+## 8.0.1
+
+### Patch Changes
+
+- e6bee36: fixing up the repo link in package.json
+- Updated dependencies [e6bee36]
+  - @ioki/node-ts-cache@7.0.1
+
 ## 8.0.0
 
 ### Patch Changes

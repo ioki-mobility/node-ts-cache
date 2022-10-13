@@ -1,7 +1,7 @@
 {
   "name": "@ioki/node-ts-cache-storage-elasticsearch",
   "description": "ElasticSearch storage module for node-ts-cache",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/ioki-mobility/node-ts-cache#readme",
   "peerDependencies": {
-    "@ioki/node-ts-cache": "^7.0.0",
+    "@ioki/node-ts-cache": "^7.0.1",
     "@elastic/elasticsearch": "^8.4.0"
   },
   "devDependencies": {
-    "@ioki/node-ts-cache": "^7.0.0",
+    "@ioki/node-ts-cache": "^7.0.1",
     "@elastic/elasticsearch": "^8.4.0",
     "@elastic/elasticsearch-mock": "^2.0.0"
   }
